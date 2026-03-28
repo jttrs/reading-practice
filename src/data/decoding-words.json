@@ -1,0 +1,1467 @@
+{
+  "spellingUnits": [
+    {
+      "id": "ai_ay",
+      "patterns": [
+        "ai",
+        "ay"
+      ],
+      "phoneme": "/a/",
+      "examples": [
+        "paid",
+        "play"
+      ],
+      "sourceEmail": "2026-03-13",
+      "book": "A play day with my brother Ray"
+    },
+    {
+      "id": "ae",
+      "patterns": [
+        "a_e"
+      ],
+      "phoneme": "/a/",
+      "examples": [
+        "lake"
+      ],
+      "sourceEmail": "2025-11-07",
+      "book": "A Hike by the Lake"
+    },
+    {
+      "id": "ie",
+      "patterns": [
+        "i_e"
+      ],
+      "phoneme": "/i/",
+      "examples": [
+        "kite"
+      ],
+      "sourceEmail": "2025-11-07",
+      "book": "A Hike by the Lake"
+    },
+    {
+      "id": "ee",
+      "patterns": [
+        "e_e"
+      ],
+      "phoneme": "/e/",
+      "examples": [
+        "pete"
+      ],
+      "sourceEmail": "2025-11-07",
+      "book": "A Hike by the Lake"
+    },
+    {
+      "id": "oe",
+      "patterns": [
+        "o_e"
+      ],
+      "phoneme": "/o/",
+      "examples": [
+        "hole"
+      ],
+      "sourceEmail": "2025-11-14",
+      "book": "Life in a Plains Tribe Part 1"
+    },
+    {
+      "id": "ue",
+      "patterns": [
+        "u_e"
+      ],
+      "phoneme": "/u/",
+      "examples": [
+        "cube"
+      ],
+      "sourceEmail": "2025-11-14",
+      "book": "Life in a Plains Tribe Part 1"
+    },
+    {
+      "id": "ea_ee",
+      "patterns": [
+        "ea",
+        "ee"
+      ],
+      "phoneme": "/e/",
+      "examples": [],
+      "sourceEmail": "2025-12-18",
+      "book": "What Little Deer Eat"
+    },
+    {
+      "id": "er_ir_ur",
+      "patterns": [
+        "er",
+        "ir",
+        "ur"
+      ],
+      "phoneme": "/ur/",
+      "examples": [],
+      "sourceEmail": "2026-01-08",
+      "book": "Bird School"
+    },
+    {
+      "id": "ar",
+      "patterns": [
+        "ar"
+      ],
+      "phoneme": "/ar/",
+      "examples": [
+        "car",
+        "fork"
+      ],
+      "sourceEmail": "2026-01-30",
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "id": "or",
+      "patterns": [
+        "or"
+      ],
+      "phoneme": "/or/",
+      "examples": [
+        "car",
+        "fork"
+      ],
+      "sourceEmail": "2026-01-30",
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "id": "ew_oa_oo_ow",
+      "patterns": [
+        "oa",
+        "ow",
+        "oo",
+        "ew"
+      ],
+      "phoneme": "",
+      "examples": [],
+      "sourceEmail": "2026-03-20",
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "id": "all",
+      "patterns": [
+        "all"
+      ],
+      "phoneme": "/awl/",
+      "examples": [],
+      "sourceEmail": "2026-03-27",
+      "book": "Ball Games"
+    }
+  ],
+  "decodingWords": [
+    {
+      "word": "away",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "aw",
+        "ay"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "day",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "d",
+        "ay"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "gray",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "gr",
+        "ay"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "hail",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "h",
+        "ai",
+        "l"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "nails",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "n",
+        "ai",
+        "ls"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "paint",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "p",
+        "ai",
+        "nt"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "play",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "pl",
+        "ay"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "rain",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "r",
+        "ai",
+        "n"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "ray",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "r",
+        "ay"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "snail",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "sn",
+        "ai",
+        "l"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "stay",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "st",
+        "ay"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "subway",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "subw",
+        "ay"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "today",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "tod",
+        "ay"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "train",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "tr",
+        "ai",
+        "n"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "wait",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "w",
+        "ai",
+        "t"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "yay",
+      "spellingUnitId": "ai_ay",
+      "decodingBreakdown": [
+        "y",
+        "ay"
+      ],
+      "book": "A Play Day with My Brother Ray"
+    },
+    {
+      "word": "came",
+      "spellingUnitId": "ae",
+      "decodingBreakdown": [
+        "c",
+        "a_e",
+        "m"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "cave",
+      "spellingUnitId": "ae",
+      "decodingBreakdown": [
+        "c",
+        "a_e",
+        "v"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "gate",
+      "spellingUnitId": "ae",
+      "decodingBreakdown": [
+        "g",
+        "a_e",
+        "t"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "lake",
+      "spellingUnitId": "ae",
+      "decodingBreakdown": [
+        "l",
+        "a_e",
+        "k"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "same",
+      "spellingUnitId": "ae",
+      "decodingBreakdown": [
+        "s",
+        "a_e",
+        "m"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "shade",
+      "spellingUnitId": "ae",
+      "decodingBreakdown": [
+        "sh",
+        "a_e",
+        "d"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "snake",
+      "spellingUnitId": "ae",
+      "decodingBreakdown": [
+        "sn",
+        "a_e",
+        "k"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "take",
+      "spellingUnitId": "ae",
+      "decodingBreakdown": [
+        "t",
+        "a_e",
+        "k"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "wake",
+      "spellingUnitId": "ae",
+      "decodingBreakdown": [
+        "w",
+        "a_e",
+        "k"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "bite",
+      "spellingUnitId": "ie",
+      "decodingBreakdown": [
+        "b",
+        "i_e",
+        "t"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "drive",
+      "spellingUnitId": "ie",
+      "decodingBreakdown": [
+        "dr",
+        "i_e",
+        "v"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "emeryville",
+      "spellingUnitId": "ie",
+      "decodingBreakdown": [
+        "emeryv",
+        "i_e",
+        "ll"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "five",
+      "spellingUnitId": "ie",
+      "decodingBreakdown": [
+        "f",
+        "i_e",
+        "v"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "hike",
+      "spellingUnitId": "ie",
+      "decodingBreakdown": [
+        "h",
+        "i_e",
+        "k"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "pile",
+      "spellingUnitId": "ie",
+      "decodingBreakdown": [
+        "p",
+        "i_e",
+        "l"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "side",
+      "spellingUnitId": "ie",
+      "decodingBreakdown": [
+        "s",
+        "i_e",
+        "d"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "slide",
+      "spellingUnitId": "ie",
+      "decodingBreakdown": [
+        "sl",
+        "i_e",
+        "d"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "smile",
+      "spellingUnitId": "ie",
+      "decodingBreakdown": [
+        "sm",
+        "i_e",
+        "l"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "suite",
+      "spellingUnitId": "ie",
+      "decodingBreakdown": [
+        "su",
+        "i_e",
+        "t"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "time",
+      "spellingUnitId": "ie",
+      "decodingBreakdown": [
+        "t",
+        "i_e",
+        "m"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "while",
+      "spellingUnitId": "ie",
+      "decodingBreakdown": [
+        "wh",
+        "i_e",
+        "l"
+      ],
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "beans",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "b",
+        "ea",
+        "ns"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "beets",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "b",
+        "ee",
+        "ts"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "cheers",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "ch",
+        "ee",
+        "rs"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "clear",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "cl",
+        "ea",
+        "r"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "dear",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "d",
+        "ea",
+        "r"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "deer",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "d",
+        "ee",
+        "r"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "eat",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "ea",
+        "t"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "eats",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "ea",
+        "ts"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "feeds",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "f",
+        "ee",
+        "ds"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "green",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "gr",
+        "ee",
+        "n"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "means",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "m",
+        "ea",
+        "ns"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "peas",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "p",
+        "ea",
+        "s"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "street",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "str",
+        "ee",
+        "t"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "sweet",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "sw",
+        "ee",
+        "t"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "treats",
+      "spellingUnitId": "ea_ee",
+      "decodingBreakdown": [
+        "tr",
+        "ea",
+        "ts"
+      ],
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "bird",
+      "spellingUnitId": "er_ir_ur",
+      "decodingBreakdown": [
+        "b",
+        "ir",
+        "d"
+      ],
+      "book": "Bird School"
+    },
+    {
+      "word": "birds",
+      "spellingUnitId": "er_ir_ur",
+      "decodingBreakdown": [
+        "b",
+        "ir",
+        "ds"
+      ],
+      "book": "Bird School"
+    },
+    {
+      "word": "chirp",
+      "spellingUnitId": "er_ir_ur",
+      "decodingBreakdown": [
+        "ch",
+        "ir",
+        "p"
+      ],
+      "book": "Bird School"
+    },
+    {
+      "word": "chirped",
+      "spellingUnitId": "er_ir_ur",
+      "decodingBreakdown": [
+        "ch",
+        "ir",
+        "ped"
+      ],
+      "book": "Bird School"
+    },
+    {
+      "word": "first",
+      "spellingUnitId": "er_ir_ur",
+      "decodingBreakdown": [
+        "f",
+        "ir",
+        "st"
+      ],
+      "book": "Bird School"
+    },
+    {
+      "word": "girls",
+      "spellingUnitId": "er_ir_ur",
+      "decodingBreakdown": [
+        "g",
+        "ir",
+        "ls"
+      ],
+      "book": "Bird School"
+    },
+    {
+      "word": "perch",
+      "spellingUnitId": "er_ir_ur",
+      "decodingBreakdown": [
+        "p",
+        "er",
+        "ch"
+      ],
+      "book": "Bird School"
+    },
+    {
+      "word": "roberta",
+      "spellingUnitId": "er_ir_ur",
+      "decodingBreakdown": [
+        "rob",
+        "er",
+        "ta"
+      ],
+      "book": "Bird School"
+    },
+    {
+      "word": "third",
+      "spellingUnitId": "er_ir_ur",
+      "decodingBreakdown": [
+        "th",
+        "ir",
+        "d"
+      ],
+      "book": "Bird School"
+    },
+    {
+      "word": "turn",
+      "spellingUnitId": "er_ir_ur",
+      "decodingBreakdown": [
+        "t",
+        "ur",
+        "n"
+      ],
+      "book": "Bird School"
+    },
+    {
+      "word": "vern",
+      "spellingUnitId": "er_ir_ur",
+      "decodingBreakdown": [
+        "v",
+        "er",
+        "n"
+      ],
+      "book": "Bird School"
+    },
+    {
+      "word": "art",
+      "spellingUnitId": "ar",
+      "decodingBreakdown": [
+        "ar",
+        "t"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "bear",
+      "spellingUnitId": "ar",
+      "decodingBreakdown": [
+        "be",
+        "ar"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "dark",
+      "spellingUnitId": "ar",
+      "decodingBreakdown": [
+        "d",
+        "ar",
+        "k"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "darted",
+      "spellingUnitId": "ar",
+      "decodingBreakdown": [
+        "d",
+        "ar",
+        "ted"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "hard",
+      "spellingUnitId": "ar",
+      "decodingBreakdown": [
+        "h",
+        "ar",
+        "d"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "jar",
+      "spellingUnitId": "ar",
+      "decodingBreakdown": [
+        "j",
+        "ar"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "part",
+      "spellingUnitId": "ar",
+      "decodingBreakdown": [
+        "p",
+        "ar",
+        "t"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "smart",
+      "spellingUnitId": "ar",
+      "decodingBreakdown": [
+        "sm",
+        "ar",
+        "t"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "stars",
+      "spellingUnitId": "ar",
+      "decodingBreakdown": [
+        "st",
+        "ar",
+        "s"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "starting",
+      "spellingUnitId": "ar",
+      "decodingBreakdown": [
+        "st",
+        "ar",
+        "ting"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "tar",
+      "spellingUnitId": "ar",
+      "decodingBreakdown": [
+        "t",
+        "ar"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "toward",
+      "spellingUnitId": "ar",
+      "decodingBreakdown": [
+        "tow",
+        "ar",
+        "d"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "author",
+      "spellingUnitId": "or",
+      "decodingBreakdown": [
+        "auth",
+        "or"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "cork",
+      "spellingUnitId": "or",
+      "decodingBreakdown": [
+        "c",
+        "or",
+        "k"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "form",
+      "spellingUnitId": "or",
+      "decodingBreakdown": [
+        "f",
+        "or",
+        "m"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "formed",
+      "spellingUnitId": "or",
+      "decodingBreakdown": [
+        "f",
+        "or",
+        "med"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "illustrator",
+      "spellingUnitId": "or",
+      "decodingBreakdown": [
+        "illustrat",
+        "or"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "interior",
+      "spellingUnitId": "or",
+      "decodingBreakdown": [
+        "interi",
+        "or"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "more",
+      "spellingUnitId": "or",
+      "decodingBreakdown": [
+        "m",
+        "or",
+        "e"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "morris",
+      "spellingUnitId": "or",
+      "decodingBreakdown": [
+        "m",
+        "or",
+        "ris"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "stored",
+      "spellingUnitId": "or",
+      "decodingBreakdown": [
+        "st",
+        "or",
+        "ed"
+      ],
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "blow",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "bl",
+        "ow"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "book",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "b",
+        "oo",
+        "k"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "brown",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "br",
+        "ow",
+        "n"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "chow",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "ch",
+        "ow"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "coals",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "c",
+        "oa",
+        "ls"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "cook",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "c",
+        "oo",
+        "k"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "cooked",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "c",
+        "oo",
+        "ked"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "cooking",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "c",
+        "oo",
+        "king"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "cool",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "c",
+        "oo",
+        "l"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "cools",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "c",
+        "oo",
+        "ls"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "crew",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "cr",
+        "ew"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "down",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "d",
+        "ow",
+        "n"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "food",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "f",
+        "oo",
+        "d"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "glow",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "gl",
+        "ow"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "good",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "g",
+        "oo",
+        "d"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "grown",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "gr",
+        "ow",
+        "n"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "low",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "l",
+        "ow"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "marshmallows",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "marshmall",
+        "ow",
+        "s"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "ooze",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "oo",
+        "ze"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "roar",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "r",
+        "oa",
+        "r"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "roast",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "r",
+        "oa",
+        "st"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "roasted",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "r",
+        "oa",
+        "sted"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "soon",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "s",
+        "oo",
+        "n"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "stew",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "st",
+        "ew"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "toast",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "t",
+        "oa",
+        "st"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "toasted",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "t",
+        "oa",
+        "sted"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "tools",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "t",
+        "oo",
+        "ls"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "wood",
+      "spellingUnitId": "ew_oa_oo_ow",
+      "decodingBreakdown": [
+        "w",
+        "oo",
+        "d"
+      ],
+      "book": "Cook Food on a Campfire"
+    },
+    {
+      "word": "ball",
+      "spellingUnitId": "all",
+      "decodingBreakdown": [
+        "b",
+        "all"
+      ],
+      "book": "Ball Games"
+    },
+    {
+      "word": "ballpark",
+      "spellingUnitId": "all",
+      "decodingBreakdown": [
+        "b",
+        "all",
+        "park"
+      ],
+      "book": "Ball Games"
+    },
+    {
+      "word": "baseball",
+      "spellingUnitId": "all",
+      "decodingBreakdown": [
+        "baseb",
+        "all"
+      ],
+      "book": "Ball Games"
+    },
+    {
+      "word": "basketball",
+      "spellingUnitId": "all",
+      "decodingBreakdown": [
+        "basketb",
+        "all"
+      ],
+      "book": "Ball Games"
+    },
+    {
+      "word": "called",
+      "spellingUnitId": "all",
+      "decodingBreakdown": [
+        "c",
+        "all",
+        "ed"
+      ],
+      "book": "Ball Games"
+    },
+    {
+      "word": "dodgeball",
+      "spellingUnitId": "all",
+      "decodingBreakdown": [
+        "dodgeb",
+        "all"
+      ],
+      "book": "Ball Games"
+    },
+    {
+      "word": "kickball",
+      "spellingUnitId": "all",
+      "decodingBreakdown": [
+        "kickb",
+        "all"
+      ],
+      "book": "Ball Games"
+    },
+    {
+      "word": "small",
+      "spellingUnitId": "all",
+      "decodingBreakdown": [
+        "sm",
+        "all"
+      ],
+      "book": "Ball Games"
+    },
+    {
+      "word": "tall",
+      "spellingUnitId": "all",
+      "decodingBreakdown": [
+        "t",
+        "all"
+      ],
+      "book": "Ball Games"
+    }
+  ],
+  "sightWords": [
+    {
+      "word": "walk",
+      "sourceEmail": "2026-03-13",
+      "book": "A play day with my brother Ray"
+    },
+    {
+      "word": "talk",
+      "sourceEmail": "2026-03-13",
+      "book": "A play day with my brother Ray"
+    },
+    {
+      "word": "because",
+      "sourceEmail": "2026-03-13",
+      "book": "A play day with my brother Ray"
+    },
+    {
+      "word": "children",
+      "sourceEmail": "2026-03-13",
+      "book": "A play day with my brother Ray"
+    },
+    {
+      "word": "every",
+      "sourceEmail": "2025-11-07",
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "other",
+      "sourceEmail": "2025-11-07",
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "mother",
+      "sourceEmail": "2025-11-07",
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "brother",
+      "sourceEmail": "2025-11-07",
+      "book": "A Hike by the Lake"
+    },
+    {
+      "word": "woman",
+      "sourceEmail": "2025-11-14",
+      "book": "Life in a Plains Tribe Part 1"
+    },
+    {
+      "word": "women",
+      "sourceEmail": "2025-11-14",
+      "book": "Life in a Plains Tribe Part 1"
+    },
+    {
+      "word": "boy",
+      "sourceEmail": "2025-11-14",
+      "book": "Life in a Plains Tribe Part 1"
+    },
+    {
+      "word": "one",
+      "sourceEmail": "2025-12-12",
+      "book": "Out My Window"
+    },
+    {
+      "word": "two",
+      "sourceEmail": "2025-12-12",
+      "book": "Out My Window"
+    },
+    {
+      "word": "too",
+      "sourceEmail": "2025-12-18",
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "who",
+      "sourceEmail": "2026-01-08",
+      "book": "Bird School"
+    },
+    {
+      "word": "school",
+      "sourceEmail": "2026-01-08",
+      "book": "Bird School"
+    },
+    {
+      "word": "even",
+      "sourceEmail": "2026-03-27",
+      "book": "Ball Games"
+    },
+    {
+      "word": "picture",
+      "sourceEmail": "2026-03-27",
+      "book": "Ball Games"
+    },
+    {
+      "word": "give",
+      "sourceEmail": "2026-03-03",
+      "book": "Fun fort"
+    },
+    {
+      "word": "live",
+      "sourceEmail": "2026-03-03",
+      "book": "Fun fort"
+    },
+    {
+      "word": "ever",
+      "sourceEmail": "2026-03-03",
+      "book": "Fun fort"
+    },
+    {
+      "word": "never",
+      "sourceEmail": "2026-03-03",
+      "book": "Fun fort"
+    },
+    {
+      "word": "only",
+      "sourceEmail": "2026-03-03",
+      "book": "Fun fort"
+    },
+    {
+      "word": "head",
+      "sourceEmail": "2026-03-03",
+      "book": "Fun fort"
+    },
+    {
+      "word": "read",
+      "sourceEmail": "2026-03-03",
+      "book": "Fun fort"
+    },
+    {
+      "word": "after",
+      "sourceEmail": "2026-03-03",
+      "book": "Fun fort"
+    },
+    {
+      "word": "work",
+      "sourceEmail": "2026-03-03",
+      "book": "Fun fort"
+    }
+  ]
+}
