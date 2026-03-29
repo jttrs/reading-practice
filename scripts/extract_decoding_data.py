@@ -473,7 +473,7 @@ def _split_consonants(s: str) -> list[str]:
     elements: list[str] = []
     i = 0
     while i < len(s):
-        # Try 3-letter digraphs first (tch), then 2-letter
+        # Try 3-letter digraphs first (tch, ing), then 2-letter (ed, ch, sh, ...)
         matched = False
         for length in (3, 2):
             chunk = s[i:i + length]
@@ -556,8 +556,16 @@ def _make_unit_id(patterns: list[str]) -> str:
 def _generate_tts_breakdown(
     breakdown: list[str], patterns: list[str], word: str,
 ) -> list[str]:
-    """Generate TTS pronunciation for each element in a breakdown."""
-    return [get_element_tts(el, patterns, word) for el in breakdown]
+    """Generate TTS pronunciation for each element in a breakdown.
+
+    Passes the preceding element to get_element_tts so that suffix
+    elements like 'ed' and 's' can determine voicing-based pronunciation.
+    """
+    result = []
+    for i, el in enumerate(breakdown):
+        preceding = breakdown[i - 1] if i > 0 else None
+        result.append(get_element_tts(el, patterns, word, preceding))
+    return result
 
 
 # Common words to exclude from decoding practice (too simple / not decodable)

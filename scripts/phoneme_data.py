@@ -24,6 +24,8 @@ DIGRAPHS: set[str] = {
     "ph", "gh", "wr", "kn", "mb", "mn", "tch", "dg",
     # Double consonants (single sound)
     "bb", "dd", "ff", "gg", "ll", "mm", "nn", "pp", "rr", "ss", "tt", "zz",
+    # Suffixes kept as single breakdown elements
+    "ed", "ing",
 }
 
 # ---------------------------------------------------------------------------
@@ -70,7 +72,27 @@ DIGRAPH_TTS: dict[str, str] = {
     "kn": "nnn",
     "tch": "chuh",
     "dg": "juh",
+    # Suffix elements — context-dependent, handled by get_suffix_ed_tts / get_suffix_s_tts
+    "ing": "ing",
 }
+
+# ---------------------------------------------------------------------------
+# Voiced / voiceless consonant classification
+# Used to determine suffix pronunciation (-ed, -s)
+# ---------------------------------------------------------------------------
+
+# Voiceless consonant sounds: the -ed suffix is /t/ after these, -s is /s/
+VOICELESS_SOUNDS: set[str] = {
+    "p", "t", "k", "f", "s", "ch", "sh", "th",  # unvoiced th (θ)
+    "pp", "tt", "ck", "ff", "ss", "tch", "ph", "gh",
+}
+
+# All other consonants and all vowels are voiced.
+# The -ed suffix is /d/ after voiced sounds, -s is /z/.
+# Special case: -ed is /ɪd/ after /t/ or /d/ sounds.
+
+# Elements that represent a /t/ or /d/ sound (for -ed → /ɪd/ rule)
+TD_SOUNDS: set[str] = {"t", "d", "tt", "dd"}
 
 # ---------------------------------------------------------------------------
 # 44 Phonemes — the Letterland spine
@@ -101,8 +123,8 @@ PHONEMES: list[dict] = [
         "ipa": "/k/",
         "category": "consonant",
         "tts": "kuh",
-        "spellings": ["c", "k", "ck", "ch", "qu"],
-        "examples": {"c": ["cat", "cool"], "k": ["kit", "kick"], "ck": ["duck"], "ch": ["school"], "qu": ["unique"]},
+        "spellings": ["c", "k", "ck", "ch", "qu", "cc", "lk", "x"],
+        "examples": {"c": ["cat", "cool"], "k": ["kit", "kick"], "ck": ["duck"], "ch": ["school"], "qu": ["unique"], "cc": ["accent"], "lk": ["folk"], "x": ["box"]},
         "source": "reference",
     },
     {
@@ -119,8 +141,8 @@ PHONEMES: list[dict] = [
         "ipa": "/f/",
         "category": "consonant",
         "tts": "fff",
-        "spellings": ["f", "ff", "ph", "gh"],
-        "examples": {"f": ["fan", "food"], "ff": ["puff"], "ph": ["photo"], "gh": ["rough"]},
+        "spellings": ["f", "ff", "ph", "gh", "lf", "ft"],
+        "examples": {"f": ["fan", "food"], "ff": ["puff"], "ph": ["photo"], "gh": ["rough"], "lf": ["half"], "ft": ["often"]},
         "source": "reference",
     },
     {
@@ -128,8 +150,8 @@ PHONEMES: list[dict] = [
         "ipa": "/g/",
         "category": "consonant",
         "tts": "guh",
-        "spellings": ["g", "gg"],
-        "examples": {"g": ["go", "good"], "gg": ["egg"]},
+        "spellings": ["g", "gg", "gh", "gu", "gue"],
+        "examples": {"g": ["go", "good"], "gg": ["egg"], "gh": ["ghost"], "gu": ["guest"], "gue": ["prologue"]},
         "source": "reference",
     },
     {
@@ -164,8 +186,8 @@ PHONEMES: list[dict] = [
         "ipa": "/m/",
         "category": "consonant",
         "tts": "mmm",
-        "spellings": ["m", "mm", "mb", "mn"],
-        "examples": {"m": ["map", "more"], "mm": ["summer"], "mb": ["thumb"], "mn": ["autumn"]},
+        "spellings": ["m", "mm", "mb", "mn", "lm"],
+        "examples": {"m": ["map", "more"], "mm": ["summer"], "mb": ["thumb"], "mn": ["autumn"], "lm": ["palm"]},
         "source": "reference",
     },
     {
@@ -173,8 +195,8 @@ PHONEMES: list[dict] = [
         "ipa": "/n/",
         "category": "consonant",
         "tts": "nnn",
-        "spellings": ["n", "nn", "kn"],
-        "examples": {"n": ["net", "rain"], "nn": ["tennis"], "kn": ["knee"]},
+        "spellings": ["n", "nn", "kn", "gn", "pn"],
+        "examples": {"n": ["net", "rain"], "nn": ["tennis"], "kn": ["knee"], "gn": ["gnat"], "pn": ["pneumonic"]},
         "source": "reference",
     },
     {
@@ -191,8 +213,8 @@ PHONEMES: list[dict] = [
         "ipa": "/r/",
         "category": "consonant",
         "tts": "rrr",
-        "spellings": ["r", "rr", "wr"],
-        "examples": {"r": ["run", "rain"], "rr": ["carry"], "wr": ["write"]},
+        "spellings": ["r", "rr", "wr", "rh"],
+        "examples": {"r": ["run", "rain"], "rr": ["carry"], "wr": ["write"], "rh": ["rhyme"]},
         "source": "reference",
     },
     {
@@ -200,8 +222,8 @@ PHONEMES: list[dict] = [
         "ipa": "/s/",
         "category": "consonant",
         "tts": "sss",
-        "spellings": ["s", "ss", "c"],
-        "examples": {"s": ["sun", "stars"], "ss": ["miss"], "c": ["cell"]},
+        "spellings": ["s", "ss", "c", "sc", "ps", "ce", "se"],
+        "examples": {"s": ["sun", "stars"], "ss": ["miss"], "c": ["cell"], "sc": ["scene"], "ps": ["psycho"], "ce": ["pace"], "se": ["course"]},
         "source": "reference",
     },
     {
@@ -245,8 +267,8 @@ PHONEMES: list[dict] = [
         "ipa": "/z/",
         "category": "consonant",
         "tts": "zzz",
-        "spellings": ["z", "zz", "s"],
-        "examples": {"z": ["zip"], "zz": ["buzz"], "s": ["is"]},
+        "spellings": ["z", "zz", "s", "ss", "x", "ze", "se"],
+        "examples": {"z": ["zip"], "zz": ["buzz"], "s": ["is"], "ss": ["scissors"], "x": ["xylophone"], "ze": ["craze"], "se": ["cause"]},
         "source": "reference",
     },
     {
@@ -254,8 +276,8 @@ PHONEMES: list[dict] = [
         "ipa": "/tʃ/",
         "category": "consonant",
         "tts": "chuh",
-        "spellings": ["ch", "tch"],
-        "examples": {"ch": ["chip", "chirp"], "tch": ["catch"]},
+        "spellings": ["ch", "tch", "tu", "te"],
+        "examples": {"ch": ["chip", "chirp"], "tch": ["catch"], "tu": ["future"], "te": ["righteous"]},
         "source": "reference",
     },
     {
@@ -272,8 +294,8 @@ PHONEMES: list[dict] = [
         "ipa": "/ʃ/",
         "category": "consonant",
         "tts": "shh",
-        "spellings": ["sh", "t"],
-        "examples": {"sh": ["shop", "shade"], "t": ["attention"]},
+        "spellings": ["sh", "t", "ce", "ci", "si", "sci", "ti"],
+        "examples": {"sh": ["shop", "shade"], "t": ["attention"], "ce": ["ocean"], "ci": ["special"], "si": ["pension"], "sci": ["conscience"], "ti": ["station"]},
         "source": "reference",
     },
     {
@@ -299,8 +321,8 @@ PHONEMES: list[dict] = [
         "ipa": "/ʒ/",
         "category": "consonant",
         "tts": "zhuh",
-        "spellings": ["s"],
-        "examples": {"s": ["treasure"]},
+        "spellings": ["s", "si", "z"],
+        "examples": {"s": ["treasure"], "si": ["division"], "z": ["azure"]},
         "source": "reference",
     },
 
@@ -582,14 +604,30 @@ OW_AS_OW: set[str] = {
 }
 
 
-def get_element_tts(element: str, active_graphemes: list[str], word: str) -> str:
+def get_element_tts(
+    element: str, active_graphemes: list[str], word: str,
+    preceding_element: str | None = None,
+) -> str:
     """Get TTS pronunciation for one breakdown element.
 
     Args:
-        element: The breakdown element (e.g., 'b', 'ai', 'a_e', 'ch', 'ting')
+        element: The breakdown element (e.g., 'b', 'ai', 'a_e', 'ch', 'ed')
         active_graphemes: The graphemes of the active spelling unit for this word
         word: The full word (needed for ambiguous cases like 'ow')
+        preceding_element: The previous breakdown element (needed for suffix TTS)
     """
+    # Suffix: -ed (context-dependent pronunciation)
+    if element == "ed" and preceding_element is not None:
+        return get_suffix_ed_tts(preceding_element)
+
+    # Suffix: -s (context-dependent pronunciation)
+    if element == "s" and preceding_element is not None and word.endswith("s"):
+        return get_suffix_s_tts(preceding_element)
+
+    # Suffix: -ing
+    if element == "ing":
+        return "ing"
+
     # Split digraph notation (a_e, i_e, etc.)
     if "_" in element:
         phoneme_id = GRAPHEME_TO_PHONEME.get(element)
@@ -624,5 +662,32 @@ def get_element_tts(element: str, active_graphemes: list[str], word: str) -> str
     if element in CONSONANT_TTS:
         return CONSONANT_TTS[element]
 
-    # Longer element (suffix like "ting", "sted", "park") — TTS handles as-is
+    # Longer element (suffix like "park") — TTS handles as-is
     return element
+
+
+def get_suffix_ed_tts(preceding_element: str) -> str:
+    """Get TTS pronunciation for the -ed suffix based on the preceding sound.
+
+    Rules:
+    - After /t/ or /d/ → /ɪd/ (added syllable): darted, roasted
+    - After voiceless consonant → /t/: chirped, cooked
+    - After voiced consonant or vowel → /d/: called, formed, stored
+    """
+    if preceding_element in TD_SOUNDS:
+        return "id"
+    if preceding_element in VOICELESS_SOUNDS:
+        return "tuh"
+    return "duh"
+
+
+def get_suffix_s_tts(preceding_element: str) -> str:
+    """Get TTS pronunciation for the -s suffix based on the preceding sound.
+
+    Rules:
+    - After voiceless consonant → /s/: treats, beets
+    - After voiced consonant or vowel → /z/: beans, nails, birds
+    """
+    if preceding_element in VOICELESS_SOUNDS:
+        return "sss"
+    return "zzz"

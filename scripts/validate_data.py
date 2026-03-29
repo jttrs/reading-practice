@@ -21,7 +21,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from phoneme_data import PHONEMES, DIGRAPHS, CONSONANT_TTS, VOWEL_GRAPHEMES
+from phoneme_data import PHONEMES, DIGRAPHS, CONSONANT_TTS, VOWEL_GRAPHEMES, VOICELESS_SOUNDS, TD_SOUNDS
 
 DATA_PATH = Path("src/data/decoding-words.json")
 
@@ -97,7 +97,7 @@ def validate_breakdown_granularity(data: dict) -> list[ValidationError]:
 
             # Check if it's a multi-consonant element that's not a digraph
             if len(el) >= 2 and all(c not in vowels for c in el):
-                if el not in DIGRAPHS:
+                if el not in DIGRAPHS and el not in {"ed", "ing"}:
                     errors.append(ValidationError(
                         "breakdown_granularity",
                         f"'{w['word']}': element '{el}' is a consonant cluster "
@@ -225,6 +225,48 @@ def validate_sight_word_tts(data: dict) -> list[ValidationError]:
     return errors
 
 
+def validate_suffix_pronunciation(data: dict) -> list[ValidationError]:
+    """Suffix elements (-ed, -s, -ing) must have correct context-dependent TTS."""
+    errors = []
+    for w in data["decodingWords"]:
+        bd = w["decodingBreakdown"]
+        tts = w["ttsBreakdown"]
+        for i, el in enumerate(bd):
+            if el == "ed" and i > 0:
+                preceding = bd[i - 1]
+                if preceding in TD_SOUNDS:
+                    expected = "id"
+                elif preceding in VOICELESS_SOUNDS:
+                    expected = "tuh"
+                else:
+                    expected = "duh"
+                if tts[i] != expected:
+                    errors.append(ValidationError(
+                        "suffix_pronunciation",
+                        f"'{w['word']}': -ed after '{preceding}' should be "
+                        f"'{expected}' but got '{tts[i]}'"
+                    ))
+            elif el == "s" and i > 0 and w["word"].endswith("s"):
+                preceding = bd[i - 1]
+                if preceding in VOICELESS_SOUNDS:
+                    expected = "sss"
+                else:
+                    expected = "zzz"
+                if tts[i] != expected:
+                    errors.append(ValidationError(
+                        "suffix_pronunciation",
+                        f"'{w['word']}': -s after '{preceding}' should be "
+                        f"'{expected}' but got '{tts[i]}'"
+                    ))
+            elif el == "ing":
+                if tts[i] != "ing":
+                    errors.append(ValidationError(
+                        "suffix_pronunciation",
+                        f"'{w['word']}': -ing should be 'ing' but got '{tts[i]}'"
+                    ))
+    return errors
+
+
 def main():
     data = load_data()
 
@@ -238,6 +280,7 @@ def main():
         ("No duplicates", validate_no_duplicates),
         ("No excluded words", validate_no_excluded_words),
         ("Sight word TTS", validate_sight_word_tts),
+        ("Suffix pronunciation", validate_suffix_pronunciation),
     ]
 
     total_errors = 0

@@ -21,7 +21,10 @@
         "k",
         "ck",
         "ch",
-        "qu"
+        "qu",
+        "cc",
+        "lk",
+        "x"
       ],
       "source": "reference"
     },
@@ -46,7 +49,9 @@
         "f",
         "ff",
         "ph",
-        "gh"
+        "gh",
+        "lf",
+        "ft"
       ],
       "source": "reference"
     },
@@ -57,7 +62,10 @@
       "tts": "guh",
       "spellings": [
         "g",
-        "gg"
+        "gg",
+        "gh",
+        "gu",
+        "gue"
       ],
       "source": "reference"
     },
@@ -105,7 +113,8 @@
         "m",
         "mm",
         "mb",
-        "mn"
+        "mn",
+        "lm"
       ],
       "source": "reference"
     },
@@ -117,7 +126,9 @@
       "spellings": [
         "n",
         "nn",
-        "kn"
+        "kn",
+        "gn",
+        "pn"
       ],
       "source": "reference"
     },
@@ -140,7 +151,8 @@
       "spellings": [
         "r",
         "rr",
-        "wr"
+        "wr",
+        "rh"
       ],
       "source": "reference"
     },
@@ -152,7 +164,11 @@
       "spellings": [
         "s",
         "ss",
-        "c"
+        "c",
+        "sc",
+        "ps",
+        "ce",
+        "se"
       ],
       "source": "reference"
     },
@@ -209,7 +225,11 @@
       "spellings": [
         "z",
         "zz",
-        "s"
+        "s",
+        "ss",
+        "x",
+        "ze",
+        "se"
       ],
       "source": "reference"
     },
@@ -220,7 +240,9 @@
       "tts": "chuh",
       "spellings": [
         "ch",
-        "tch"
+        "tch",
+        "tu",
+        "te"
       ],
       "source": "reference"
     },
@@ -242,7 +264,12 @@
       "tts": "shh",
       "spellings": [
         "sh",
-        "t"
+        "t",
+        "ce",
+        "ci",
+        "si",
+        "sci",
+        "ti"
       ],
       "source": "reference"
     },
@@ -272,7 +299,9 @@
       "category": "consonant",
       "tts": "zhuh",
       "spellings": [
-        "s"
+        "s",
+        "si",
+        "z"
       ],
       "source": "reference"
     },
@@ -777,7 +806,7 @@
         "nnn",
         "ay",
         "lll",
-        "sss"
+        "zzz"
       ],
       "ttsWord": "nails",
       "book": "A Play Day with My Brother Ray"
@@ -1291,7 +1320,7 @@
         "buh",
         "ee",
         "nnn",
-        "sss"
+        "zzz"
       ],
       "ttsWord": "beans",
       "book": "What Little Deer Eat"
@@ -1327,7 +1356,7 @@
         "chuh",
         "ee",
         "rrr",
-        "sss"
+        "zzz"
       ],
       "ttsWord": "cheers",
       "book": "What Little Deer Eat"
@@ -1425,7 +1454,7 @@
         "fff",
         "ee",
         "duh",
-        "sss"
+        "zzz"
       ],
       "ttsWord": "feeds",
       "book": "What Little Deer Eat"
@@ -1461,7 +1490,7 @@
         "mmm",
         "ee",
         "nnn",
-        "sss"
+        "zzz"
       ],
       "ttsWord": "means",
       "book": "What Little Deer Eat"
@@ -1477,7 +1506,7 @@
       "ttsBreakdown": [
         "puh",
         "ee",
-        "sss"
+        "zzz"
       ],
       "ttsWord": "peas",
       "book": "What Little Deer Eat"
@@ -1569,7 +1598,7 @@
         "buh",
         "er",
         "duh",
-        "sss"
+        "zzz"
       ],
       "ttsWord": "birds",
       "book": "Bird School"
@@ -1597,15 +1626,13 @@
         "ch",
         "ir",
         "p",
-        "e",
-        "d"
+        "ed"
       ],
       "ttsBreakdown": [
         "chuh",
         "er",
         "puh",
-        "e",
-        "duh"
+        "tuh"
       ],
       "ttsWord": "chirped",
       "book": "Bird School"
@@ -1641,7 +1668,7 @@
         "guh",
         "er",
         "lll",
-        "sss"
+        "zzz"
       ],
       "ttsWord": "girls",
       "book": "Bird School"
@@ -1731,15 +1758,13 @@
         "d",
         "ar",
         "t",
-        "e",
-        "d"
+        "ed"
       ],
       "ttsBreakdown": [
         "duh",
         "ar",
         "tuh",
-        "e",
-        "duh"
+        "id"
       ],
       "ttsWord": "darted",
       "book": "Fox Spills the Stars"
@@ -1821,7 +1846,7 @@
         "sss",
         "tuh",
         "ar",
-        "sss"
+        "zzz"
       ],
       "ttsWord": "stars",
       "book": "Fox Spills the Stars"
@@ -1834,16 +1859,14 @@
         "t",
         "ar",
         "t",
-        "i",
-        "ng"
+        "ing"
       ],
       "ttsBreakdown": [
         "sss",
         "tuh",
         "ar",
         "tuh",
-        "i",
-        "ng"
+        "ing"
       ],
       "ttsWord": "starting",
       "book": "Fox Spills the Stars"
@@ -1901,14 +1924,12 @@
         "f",
         "or",
         "m",
-        "e",
-        "d"
+        "ed"
       ],
       "ttsBreakdown": [
         "fff",
         "or",
         "mmm",
-        "e",
         "duh"
       ],
       "ttsWord": "formed",
@@ -1937,14 +1958,12 @@
         "s",
         "t",
         "or",
-        "e",
-        "d"
+        "ed"
       ],
       "ttsBreakdown": [
         "sss",
         "tuh",
         "or",
-        "e",
         "duh"
       ],
       "ttsWord": "stored",
@@ -2011,7 +2030,7 @@
         "kuh",
         "oh",
         "lll",
-        "sss"
+        "zzz"
       ],
       "ttsWord": "coals",
       "book": "Cook Food on a Campfire"
@@ -2039,15 +2058,13 @@
         "c",
         "oo",
         "k",
-        "e",
-        "d"
+        "ed"
       ],
       "ttsBreakdown": [
         "kuh",
         "oo",
         "kuh",
-        "e",
-        "duh"
+        "tuh"
       ],
       "ttsWord": "cooked",
       "book": "Cook Food on a Campfire"
@@ -2059,15 +2076,13 @@
         "c",
         "oo",
         "k",
-        "i",
-        "ng"
+        "ing"
       ],
       "ttsBreakdown": [
         "kuh",
         "oo",
         "kuh",
-        "i",
-        "ng"
+        "ing"
       ],
       "ttsWord": "cooking",
       "book": "Cook Food on a Campfire"
@@ -2101,7 +2116,7 @@
         "kuh",
         "oo",
         "lll",
-        "sss"
+        "zzz"
       ],
       "ttsWord": "cools",
       "book": "Cook Food on a Campfire"
@@ -2241,7 +2256,7 @@
         "a",
         "ll",
         "oh",
-        "sss"
+        "zzz"
       ],
       "ttsWord": "marshmallows",
       "book": "Cook Food on a Campfire"
@@ -2304,16 +2319,14 @@
         "oa",
         "s",
         "t",
-        "e",
-        "d"
+        "ed"
       ],
       "ttsBreakdown": [
         "rrr",
         "oh",
         "sss",
         "tuh",
-        "e",
-        "duh"
+        "id"
       ],
       "ttsWord": "roasted",
       "book": "Cook Food on a Campfire"
@@ -2376,16 +2389,14 @@
         "oa",
         "s",
         "t",
-        "e",
-        "d"
+        "ed"
       ],
       "ttsBreakdown": [
         "tuh",
         "oh",
         "sss",
         "tuh",
-        "e",
-        "duh"
+        "id"
       ],
       "ttsWord": "toasted",
       "book": "Cook Food on a Campfire"
@@ -2403,7 +2414,7 @@
         "tuh",
         "oo",
         "lll",
-        "sss"
+        "zzz"
       ],
       "ttsWord": "tools",
       "book": "Cook Food on a Campfire"
@@ -2514,13 +2525,11 @@
       "decodingBreakdown": [
         "c",
         "all",
-        "e",
-        "d"
+        "ed"
       ],
       "ttsBreakdown": [
         "kuh",
         "awl",
-        "e",
         "duh"
       ],
       "ttsWord": "called",
