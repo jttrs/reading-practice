@@ -13,10 +13,15 @@ Usage:
 import json
 import os
 import re
+import sys
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
 
+# Allow importing sibling modules from scripts/
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 import fitz  # PyMuPDF
+from phoneme_data import DIGRAPHS, get_element_tts
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -37,6 +42,7 @@ class SpellingUnit:
     id: str
     patterns: list[str]
     phoneme: str
+    ipa: str
     examples: list[str]
     source_email: str  # date string
     book: str
@@ -47,12 +53,15 @@ class DecodingWord:
     word: str
     spelling_unit_id: str
     decoding_breakdown: list[str]
+    tts_breakdown: list[str]
+    tts_word: str
     book: str
 
 
 @dataclass
 class SightWord:
     word: str
+    tts_word: str
     source_email: str
     book: str
 
@@ -454,9 +463,37 @@ def _normalize_title(title: str) -> str:
     return title
 
 
+def _split_consonants(s: str) -> list[str]:
+    """Split a string of consonants into individual sound elements.
+
+    Recognizes digraphs (ch, sh, th, wh, etc.) as single elements.
+    All other letters become individual elements.
+    Scans left-to-right, greedily matching the longest digraph first.
+    """
+    elements: list[str] = []
+    i = 0
+    while i < len(s):
+        # Try 3-letter digraphs first (tch), then 2-letter
+        matched = False
+        for length in (3, 2):
+            chunk = s[i:i + length]
+            if chunk in DIGRAPHS:
+                elements.append(chunk)
+                i += length
+                matched = True
+                break
+        if not matched:
+            elements.append(s[i])
+            i += 1
+    return elements
+
+
 def _generate_breakdown(word: str, pattern: str) -> list[str] | None:
     """
     Generate a decoding breakdown for a word based on a spelling pattern.
+
+    Every consonant is split into individual sounds, except true digraphs
+    (ch, sh, th, wh, etc.) which stay grouped.
 
     For split digraphs like 'a_e': match "a...e" where the a and final e
     are separated by consonants.
@@ -471,11 +508,8 @@ def _generate_breakdown(word: str, pattern: str) -> list[str] | None:
         parts = pattern.split("_")
         if len(parts) != 2:
             return None
-        vowel, final = parts  # e.g., 'a', 'e'
+        vowel, final = parts
 
-        # The word should end with the final letter (or 's' after it)
-        # and contain the vowel before some consonants before the final
-        # Pattern: (prefix)(vowel)(consonants)(final_e)
         regex = re.compile(
             rf"^(.*?)({re.escape(vowel)})([^aeiou]+)({re.escape(final)})([s]?)$",
             re.IGNORECASE,
@@ -485,27 +519,13 @@ def _generate_breakdown(word: str, pattern: str) -> list[str] | None:
             return None
 
         prefix, v, middle, e, suffix = match.groups()
-        breakdown = []
+        breakdown: list[str] = []
         if prefix:
-            breakdown.append(prefix)
-        # The spelling unit is the vowel + middle + e shown as the pattern
-        breakdown.append(f"{v}_{e}")
-        if middle:
-            # The consonants in between are separate elements
-            # Actually, rethink: "lake" → l, a_e, k
-            # prefix=l, v=a, middle=k, e=e
-            # So breakdown should be: [prefix, pattern, middle]
-            # Wait - the middle consonants are between vowel and final e
-            breakdown = []
-            if prefix:
-                breakdown.append(prefix)
-            breakdown.append(pattern)
-            breakdown.append(middle)
-            if suffix:
-                breakdown.append(suffix)
-        else:
-            if suffix:
-                breakdown.append(suffix)
+            breakdown.extend(_split_consonants(prefix))
+        breakdown.append(pattern)
+        breakdown.extend(_split_consonants(middle))
+        if suffix:
+            breakdown.extend(_split_consonants(suffix))
 
         return breakdown if len(breakdown) > 1 else None
 
@@ -515,23 +535,15 @@ def _generate_breakdown(word: str, pattern: str) -> list[str] | None:
         if idx == -1:
             return None
 
-        breakdown = []
         prefix = word_lower[:idx]
         suffix = word_lower[idx + len(pattern):]
 
+        breakdown = []
         if prefix:
-            # Split long prefixes at syllable boundary before the pattern
-            # e.g., "subw" → "sub" + "w", "tod" → "to" + "d"
-            if (len(prefix) > 2
-                    and any(c in "aeiou" for c in prefix)
-                    and prefix[-1] not in "aeiou"):
-                breakdown.append(prefix[:-1])
-                breakdown.append(prefix[-1])
-            else:
-                breakdown.append(prefix)
+            breakdown.extend(_split_consonants(prefix))
         breakdown.append(pattern)
         if suffix:
-            breakdown.append(suffix)
+            breakdown.extend(_split_consonants(suffix))
 
         return breakdown if breakdown else None
 
@@ -539,6 +551,13 @@ def _generate_breakdown(word: str, pattern: str) -> list[str] | None:
 def _make_unit_id(patterns: list[str]) -> str:
     """Generate a stable ID from a list of spelling patterns."""
     return "_".join(sorted(p.replace("_", "") for p in patterns))
+
+
+def _generate_tts_breakdown(
+    breakdown: list[str], patterns: list[str], word: str,
+) -> list[str]:
+    """Generate TTS pronunciation for each element in a breakdown."""
+    return [get_element_tts(el, patterns, word) for el in breakdown]
 
 
 # Common words to exclude from decoding practice (too simple / not decodable)
@@ -590,6 +609,7 @@ def cross_reference(
                 id=unit_id,
                 patterns=sp["patterns"],
                 phoneme=sp["phoneme"],
+                ipa=sp.get("ipa", ""),
                 examples=sp["examples"],
                 source_email=email.date,
                 book=book_name,
@@ -613,10 +633,15 @@ def cross_reference(
                     for pattern in sp["patterns"]:
                         breakdown = _generate_breakdown(word, pattern)
                         if breakdown:
+                            tts_bd = _generate_tts_breakdown(
+                                breakdown, sp["patterns"], word,
+                            )
                             decoding_words.append(DecodingWord(
                                 word=word,
                                 spelling_unit_id=unit_id,
                                 decoding_breakdown=breakdown,
+                                tts_breakdown=tts_bd,
+                                tts_word=word,
                                 book=book_title,
                             ))
                             seen_decoding.add(word)
@@ -629,6 +654,7 @@ def cross_reference(
                 book_name = email.book_titles[0] if email.book_titles else ""
                 sight_words_out.append(SightWord(
                     word=sw_lower,
+                    tts_word=sw_lower,
                     source_email=email.date,
                     book=book_name,
                 ))
@@ -668,12 +694,26 @@ def main():
     print(f"    {len(sight_words)} sight words")
 
     # Build output
+    from phoneme_data import PHONEMES
+
     output = {
+        "phonemes": [
+            {
+                "id": p["id"],
+                "ipa": p["ipa"],
+                "category": p["category"],
+                "tts": p["tts"],
+                "spellings": p["spellings"],
+                "source": p["source"],
+            }
+            for p in PHONEMES
+        ],
         "spellingUnits": [
             {
                 "id": u.id,
                 "patterns": u.patterns,
                 "phoneme": u.phoneme,
+                "ipa": u.ipa,
                 "examples": u.examples,
                 "sourceEmail": u.source_email,
                 "book": u.book,
@@ -685,6 +725,8 @@ def main():
                 "word": w.word,
                 "spellingUnitId": w.spelling_unit_id,
                 "decodingBreakdown": w.decoding_breakdown,
+                "ttsBreakdown": w.tts_breakdown,
+                "ttsWord": w.tts_word,
                 "book": w.book,
             }
             for w in decoding_words
@@ -692,6 +734,7 @@ def main():
         "sightWords": [
             {
                 "word": s.word,
+                "ttsWord": s.tts_word,
                 "sourceEmail": s.source_email,
                 "book": s.book,
             }

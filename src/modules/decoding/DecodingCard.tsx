@@ -6,6 +6,48 @@ interface DecodingCardProps {
   isRevealed: boolean
 }
 
+/** Check if a breakdown element is the active spelling pattern. */
+function isPatternElement(element: string, spellingUnit: SpellingUnit | undefined): boolean {
+  if (!spellingUnit) return false
+  if (spellingUnit.patterns.includes(element)) return true
+  if (element.includes('_') && spellingUnit.patterns.includes(element)) return true
+  return false
+}
+
+/**
+ * Expand a breakdown into individual letters with pattern flags.
+ * For split digraphs (a_e), marks the vowel and trailing 'e' as pattern letters.
+ * For regular patterns (ai, ee), marks those letters as pattern letters.
+ * Individual consonants get their own letter slots.
+ */
+function expandToLetters(
+  breakdown: string[],
+  spellingUnit: SpellingUnit | undefined,
+): { letter: string; isPattern: boolean }[] {
+  const chars: { letter: string; isPattern: boolean }[] = []
+  let pendingSplitEnd: string | null = null
+
+  for (const element of breakdown) {
+    const isPat = isPatternElement(element, spellingUnit)
+
+    if (element.includes('_')) {
+      // Split digraph: "a_e" → mark 'a' now, queue 'e' for end
+      const [first, last] = element.split('_')
+      for (const c of first) chars.push({ letter: c, isPattern: true })
+      pendingSplitEnd = last
+    } else {
+      for (const c of element) chars.push({ letter: c, isPattern: isPat })
+    }
+  }
+
+  // Append the split digraph's trailing letter(s)
+  if (pendingSplitEnd) {
+    for (const c of pendingSplitEnd) chars.push({ letter: c, isPattern: true })
+  }
+
+  return chars
+}
+
 export default function DecodingCard({ word, spellingUnit, isRevealed }: DecodingCardProps) {
   if (!isRevealed) {
     return (
@@ -20,45 +62,48 @@ export default function DecodingCard({ word, spellingUnit, isRevealed }: Decodin
     )
   }
 
+  const contextSection = spellingUnit && (
+    <div className="mt-4 text-center text-base text-gray-400">
+      {spellingUnit.phoneme && (
+        <p>
+          <span className="font-mono">{spellingUnit.patterns.join(', ')}</span>
+          {' → '}
+          <span className="font-mono">{spellingUnit.phoneme}</span>
+        </p>
+      )}
+      {spellingUnit.examples.length > 0 && (
+        <p className="mt-1">
+          Examples: {spellingUnit.examples.join(', ')}
+        </p>
+      )}
+      <p className="mt-1 text-sm text-gray-300">
+        from "{word.book}"
+      </p>
+    </div>
+  )
+
+  const chars = expandToLetters(word.decodingBreakdown, spellingUnit)
+
   return (
     <div className="flex flex-col items-center">
-      {/* Decoding breakdown with individual underlines */}
-      <div className="flex items-end gap-3 sm:gap-5">
-        {word.decodingBreakdown.map((element, i) => (
-          <div key={i} className="flex flex-col items-center">
-            <span className="text-5xl font-bold text-blue-700 sm:text-6xl">
-              {element}
+      {/* Letter-by-letter display with color-coded underlines */}
+      <div className="flex items-end">
+        {chars.map((ch, i) => (
+          <div key={i} className="flex flex-col items-center px-1 sm:px-2">
+            <span className="text-5xl font-bold text-gray-800 sm:text-6xl">
+              {ch.letter}
             </span>
-            <div className="mt-1 h-1 w-full rounded bg-blue-400" />
+            <div
+              className={`mt-1 h-1 w-full rounded ${
+                ch.isPattern ? 'bg-blue-400' : 'bg-gray-300'
+              }`}
+            />
           </div>
         ))}
       </div>
 
-      {/* Full word below */}
-      <p className="mt-6 text-3xl font-medium text-gray-600">
-        {word.word}
-      </p>
-
-      {/* Phoneme and context */}
-      {spellingUnit && (
-        <div className="mt-4 text-center text-base text-gray-400">
-          {spellingUnit.phoneme && (
-            <p>
-              <span className="font-mono">{spellingUnit.patterns.join(', ')}</span>
-              {' → '}
-              <span className="font-mono">{spellingUnit.phoneme}</span>
-            </p>
-          )}
-          {spellingUnit.examples.length > 0 && (
-            <p className="mt-1">
-              Examples: {spellingUnit.examples.join(', ')}
-            </p>
-          )}
-          <p className="mt-1 text-sm text-gray-300">
-            from "{word.book}"
-          </p>
-        </div>
-      )}
+      <p className="mt-6 text-3xl font-medium text-gray-600">{word.word}</p>
+      {contextSection}
     </div>
   )
 }

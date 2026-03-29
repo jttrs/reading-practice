@@ -36,7 +36,7 @@ export default function SightWordsModule() {
     setPhase('revealed')
 
     if (currentWord && tts.enabled) {
-      tts.speak(currentWord.word)
+      tts.speak(currentWord.ttsWord)
     }
   }, [phase, session, currentWord, tts])
 

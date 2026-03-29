@@ -44,7 +44,7 @@ export default function DecodingModule() {
 
     if (currentWord && tts.enabled) {
       // Speak breakdown elements then full word
-      const parts = [...currentWord.decodingBreakdown, currentWord.word]
+      const parts = [...currentWord.ttsBreakdown, currentWord.ttsWord]
       tts.speakSequence(parts)
     }
   }, [phase, session, currentWord, tts])

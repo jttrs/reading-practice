@@ -1,4 +1,538 @@
 {
+  "phonemes": [
+    {
+      "id": "b",
+      "ipa": "/b/",
+      "category": "consonant",
+      "tts": "buh",
+      "spellings": [
+        "b",
+        "bb"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "k",
+      "ipa": "/k/",
+      "category": "consonant",
+      "tts": "kuh",
+      "spellings": [
+        "c",
+        "k",
+        "ck",
+        "ch",
+        "qu"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "d",
+      "ipa": "/d/",
+      "category": "consonant",
+      "tts": "duh",
+      "spellings": [
+        "d",
+        "dd",
+        "ed"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "f",
+      "ipa": "/f/",
+      "category": "consonant",
+      "tts": "fff",
+      "spellings": [
+        "f",
+        "ff",
+        "ph",
+        "gh"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "g",
+      "ipa": "/g/",
+      "category": "consonant",
+      "tts": "guh",
+      "spellings": [
+        "g",
+        "gg"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "h",
+      "ipa": "/h/",
+      "category": "consonant",
+      "tts": "huh",
+      "spellings": [
+        "h",
+        "wh"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "j",
+      "ipa": "/d\u0292/",
+      "category": "consonant",
+      "tts": "juh",
+      "spellings": [
+        "j",
+        "g",
+        "dg"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "l",
+      "ipa": "/l/",
+      "category": "consonant",
+      "tts": "lll",
+      "spellings": [
+        "l",
+        "ll",
+        "le"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "m",
+      "ipa": "/m/",
+      "category": "consonant",
+      "tts": "mmm",
+      "spellings": [
+        "m",
+        "mm",
+        "mb",
+        "mn"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "n",
+      "ipa": "/n/",
+      "category": "consonant",
+      "tts": "nnn",
+      "spellings": [
+        "n",
+        "nn",
+        "kn"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "p",
+      "ipa": "/p/",
+      "category": "consonant",
+      "tts": "puh",
+      "spellings": [
+        "p",
+        "pp"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "r",
+      "ipa": "/r/",
+      "category": "consonant",
+      "tts": "rrr",
+      "spellings": [
+        "r",
+        "rr",
+        "wr"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "s",
+      "ipa": "/s/",
+      "category": "consonant",
+      "tts": "sss",
+      "spellings": [
+        "s",
+        "ss",
+        "c"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "t",
+      "ipa": "/t/",
+      "category": "consonant",
+      "tts": "tuh",
+      "spellings": [
+        "t",
+        "tt",
+        "ed"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "v",
+      "ipa": "/v/",
+      "category": "consonant",
+      "tts": "vvv",
+      "spellings": [
+        "v",
+        "ve"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "w",
+      "ipa": "/w/",
+      "category": "consonant",
+      "tts": "wuh",
+      "spellings": [
+        "w",
+        "wh",
+        "o"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "y_consonant",
+      "ipa": "/j/",
+      "category": "consonant",
+      "tts": "yuh",
+      "spellings": [
+        "y"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "z",
+      "ipa": "/z/",
+      "category": "consonant",
+      "tts": "zzz",
+      "spellings": [
+        "z",
+        "zz",
+        "s"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "ch",
+      "ipa": "/t\u0283/",
+      "category": "consonant",
+      "tts": "chuh",
+      "spellings": [
+        "ch",
+        "tch"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "ng",
+      "ipa": "/\u014b/",
+      "category": "consonant",
+      "tts": "ng",
+      "spellings": [
+        "ng",
+        "nk"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "sh",
+      "ipa": "/\u0283/",
+      "category": "consonant",
+      "tts": "shh",
+      "spellings": [
+        "sh",
+        "t"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "th_voiced",
+      "ipa": "/\u00f0/",
+      "category": "consonant",
+      "tts": "thh",
+      "spellings": [
+        "th"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "th_unvoiced",
+      "ipa": "/\u03b8/",
+      "category": "consonant",
+      "tts": "thh",
+      "spellings": [
+        "th"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "zh",
+      "ipa": "/\u0292/",
+      "category": "consonant",
+      "tts": "zhuh",
+      "spellings": [
+        "s"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "short_a",
+      "ipa": "/\u00e6/",
+      "category": "vowel",
+      "tts": "ah",
+      "spellings": [
+        "a"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "long_a",
+      "ipa": "/e\u026a/",
+      "category": "vowel",
+      "tts": "ay",
+      "spellings": [
+        "ai",
+        "ay",
+        "a_e",
+        "ei",
+        "a",
+        "ey"
+      ],
+      "source": "teacher"
+    },
+    {
+      "id": "air",
+      "ipa": "/\u025b\u0259r/",
+      "category": "vowel",
+      "tts": "air",
+      "spellings": [
+        "air",
+        "are",
+        "ear",
+        "ere"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "ar",
+      "ipa": "/\u0251r/",
+      "category": "vowel",
+      "tts": "ar",
+      "spellings": [
+        "ar",
+        "a",
+        "are"
+      ],
+      "source": "teacher"
+    },
+    {
+      "id": "short_e",
+      "ipa": "/\u025b/",
+      "category": "vowel",
+      "tts": "eh",
+      "spellings": [
+        "e",
+        "ea",
+        "ai",
+        "ay"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "ear",
+      "ipa": "/\u026a\u0259r/",
+      "category": "vowel",
+      "tts": "ear",
+      "spellings": [
+        "ear",
+        "eer",
+        "ere"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "long_e",
+      "ipa": "/i\u02d0/",
+      "category": "vowel",
+      "tts": "ee",
+      "spellings": [
+        "ee",
+        "ea",
+        "e",
+        "ie",
+        "e_e"
+      ],
+      "source": "teacher"
+    },
+    {
+      "id": "short_i",
+      "ipa": "/\u026a/",
+      "category": "vowel",
+      "tts": "ih",
+      "spellings": [
+        "i",
+        "y",
+        "i_e"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "long_i",
+      "ipa": "/a\u026a/",
+      "category": "vowel",
+      "tts": "eye",
+      "spellings": [
+        "igh",
+        "ie",
+        "y",
+        "i_e",
+        "i",
+        "ei"
+      ],
+      "source": "teacher"
+    },
+    {
+      "id": "short_o",
+      "ipa": "/\u0252/",
+      "category": "vowel",
+      "tts": "oh",
+      "spellings": [
+        "o"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "long_o",
+      "ipa": "/o\u028a/",
+      "category": "vowel",
+      "tts": "oh",
+      "spellings": [
+        "oa",
+        "ow",
+        "o",
+        "o_e"
+      ],
+      "source": "teacher"
+    },
+    {
+      "id": "oi",
+      "ipa": "/\u0254\u026a/",
+      "category": "vowel",
+      "tts": "oy",
+      "spellings": [
+        "oi",
+        "oy"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "long_oo",
+      "ipa": "/u\u02d0/",
+      "category": "vowel",
+      "tts": "oo",
+      "spellings": [
+        "oo",
+        "ew",
+        "ue",
+        "u_e",
+        "o",
+        "ui"
+      ],
+      "source": "teacher"
+    },
+    {
+      "id": "short_oo",
+      "ipa": "/\u028a/",
+      "category": "vowel",
+      "tts": "uh",
+      "spellings": [
+        "oo",
+        "u"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "or",
+      "ipa": "/\u0254r/",
+      "category": "vowel",
+      "tts": "or",
+      "spellings": [
+        "or",
+        "aw",
+        "au",
+        "ore",
+        "oor",
+        "our"
+      ],
+      "source": "teacher"
+    },
+    {
+      "id": "ow",
+      "ipa": "/a\u028a/",
+      "category": "vowel",
+      "tts": "ow",
+      "spellings": [
+        "ow",
+        "ou"
+      ],
+      "source": "teacher"
+    },
+    {
+      "id": "short_u",
+      "ipa": "/\u028c/",
+      "category": "vowel",
+      "tts": "uh",
+      "spellings": [
+        "u",
+        "o"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "ur",
+      "ipa": "/\u025cr/",
+      "category": "vowel",
+      "tts": "er",
+      "spellings": [
+        "ur",
+        "er",
+        "ir",
+        "ear"
+      ],
+      "source": "teacher"
+    },
+    {
+      "id": "ure",
+      "ipa": "/j\u028a\u0259r/",
+      "category": "vowel",
+      "tts": "yoor",
+      "spellings": [
+        "ure"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "schwa",
+      "ipa": "/\u0259/",
+      "category": "vowel",
+      "tts": "uh",
+      "spellings": [
+        "a"
+      ],
+      "source": "reference"
+    },
+    {
+      "id": "all",
+      "ipa": "/\u0254\u02d0l/",
+      "category": "vowel",
+      "tts": "awl",
+      "spellings": [
+        "all"
+      ],
+      "source": "teacher"
+    }
+  ],
   "spellingUnits": [
     {
       "id": "ai_ay",
@@ -7,6 +541,7 @@
         "ay"
       ],
       "phoneme": "/a/",
+      "ipa": "",
       "examples": [
         "paid",
         "play"
@@ -20,6 +555,7 @@
         "a_e"
       ],
       "phoneme": "/a/",
+      "ipa": "",
       "examples": [
         "lake"
       ],
@@ -32,6 +568,7 @@
         "i_e"
       ],
       "phoneme": "/i/",
+      "ipa": "",
       "examples": [
         "kite"
       ],
@@ -44,6 +581,7 @@
         "e_e"
       ],
       "phoneme": "/e/",
+      "ipa": "",
       "examples": [
         "pete"
       ],
@@ -56,6 +594,7 @@
         "o_e"
       ],
       "phoneme": "/o/",
+      "ipa": "",
       "examples": [
         "hole"
       ],
@@ -68,6 +607,7 @@
         "u_e"
       ],
       "phoneme": "/u/",
+      "ipa": "",
       "examples": [
         "cube",
         "flute"
@@ -82,6 +622,7 @@
         "ee"
       ],
       "phoneme": "/e/",
+      "ipa": "",
       "examples": [
         "eat",
         "tree"
@@ -97,6 +638,7 @@
         "ur"
       ],
       "phoneme": "/ur/",
+      "ipa": "",
       "examples": [
         "fern",
         "bird",
@@ -111,6 +653,7 @@
         "ar"
       ],
       "phoneme": "/ar/",
+      "ipa": "",
       "examples": [
         "car"
       ],
@@ -123,6 +666,7 @@
         "or"
       ],
       "phoneme": "/or/",
+      "ipa": "",
       "examples": [
         "fork"
       ],
@@ -138,6 +682,7 @@
         "ew"
       ],
       "phoneme": "",
+      "ipa": "",
       "examples": [],
       "sourceEmail": "2026-03-20",
       "book": "Cook Food on a Campfire"
@@ -148,6 +693,7 @@
         "all"
       ],
       "phoneme": "/awl/",
+      "ipa": "",
       "examples": [
         "tall"
       ],
@@ -160,9 +706,16 @@
       "word": "away",
       "spellingUnitId": "ai_ay",
       "decodingBreakdown": [
-        "aw",
+        "a",
+        "w",
         "ay"
       ],
+      "ttsBreakdown": [
+        "a",
+        "wuh",
+        "ay"
+      ],
+      "ttsWord": "away",
       "book": "A Play Day with My Brother Ray"
     },
     {
@@ -172,15 +725,27 @@
         "d",
         "ay"
       ],
+      "ttsBreakdown": [
+        "duh",
+        "ay"
+      ],
+      "ttsWord": "day",
       "book": "A Play Day with My Brother Ray"
     },
     {
       "word": "gray",
       "spellingUnitId": "ai_ay",
       "decodingBreakdown": [
-        "gr",
+        "g",
+        "r",
         "ay"
       ],
+      "ttsBreakdown": [
+        "guh",
+        "rrr",
+        "ay"
+      ],
+      "ttsWord": "gray",
       "book": "A Play Day with My Brother Ray"
     },
     {
@@ -191,6 +756,12 @@
         "ai",
         "l"
       ],
+      "ttsBreakdown": [
+        "huh",
+        "ay",
+        "lll"
+      ],
+      "ttsWord": "hail",
       "book": "A Play Day with My Brother Ray"
     },
     {
@@ -199,8 +770,16 @@
       "decodingBreakdown": [
         "n",
         "ai",
-        "ls"
+        "l",
+        "s"
       ],
+      "ttsBreakdown": [
+        "nnn",
+        "ay",
+        "lll",
+        "sss"
+      ],
+      "ttsWord": "nails",
       "book": "A Play Day with My Brother Ray"
     },
     {
@@ -209,17 +788,32 @@
       "decodingBreakdown": [
         "p",
         "ai",
-        "nt"
+        "n",
+        "t"
       ],
+      "ttsBreakdown": [
+        "puh",
+        "ay",
+        "nnn",
+        "tuh"
+      ],
+      "ttsWord": "paint",
       "book": "A Play Day with My Brother Ray"
     },
     {
       "word": "play",
       "spellingUnitId": "ai_ay",
       "decodingBreakdown": [
-        "pl",
+        "p",
+        "l",
         "ay"
       ],
+      "ttsBreakdown": [
+        "puh",
+        "lll",
+        "ay"
+      ],
+      "ttsWord": "play",
       "book": "A Play Day with My Brother Ray"
     },
     {
@@ -230,6 +824,12 @@
         "ai",
         "n"
       ],
+      "ttsBreakdown": [
+        "rrr",
+        "ay",
+        "nnn"
+      ],
+      "ttsWord": "rain",
       "book": "A Play Day with My Brother Ray"
     },
     {
@@ -239,55 +839,101 @@
         "r",
         "ay"
       ],
+      "ttsBreakdown": [
+        "rrr",
+        "ay"
+      ],
+      "ttsWord": "ray",
       "book": "A Play Day with My Brother Ray"
     },
     {
       "word": "snail",
       "spellingUnitId": "ai_ay",
       "decodingBreakdown": [
-        "sn",
+        "s",
+        "n",
         "ai",
         "l"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "nnn",
+        "ay",
+        "lll"
+      ],
+      "ttsWord": "snail",
       "book": "A Play Day with My Brother Ray"
     },
     {
       "word": "stay",
       "spellingUnitId": "ai_ay",
       "decodingBreakdown": [
-        "st",
+        "s",
+        "t",
         "ay"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "tuh",
+        "ay"
+      ],
+      "ttsWord": "stay",
       "book": "A Play Day with My Brother Ray"
     },
     {
       "word": "subway",
       "spellingUnitId": "ai_ay",
       "decodingBreakdown": [
-        "sub",
+        "s",
+        "u",
+        "b",
         "w",
         "ay"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "u",
+        "buh",
+        "wuh",
+        "ay"
+      ],
+      "ttsWord": "subway",
       "book": "A Play Day with My Brother Ray"
     },
     {
       "word": "today",
       "spellingUnitId": "ai_ay",
       "decodingBreakdown": [
-        "to",
+        "t",
+        "o",
         "d",
         "ay"
       ],
+      "ttsBreakdown": [
+        "tuh",
+        "o",
+        "duh",
+        "ay"
+      ],
+      "ttsWord": "today",
       "book": "A Play Day with My Brother Ray"
     },
     {
       "word": "train",
       "spellingUnitId": "ai_ay",
       "decodingBreakdown": [
-        "tr",
+        "t",
+        "r",
         "ai",
         "n"
       ],
+      "ttsBreakdown": [
+        "tuh",
+        "rrr",
+        "ay",
+        "nnn"
+      ],
+      "ttsWord": "train",
       "book": "A Play Day with My Brother Ray"
     },
     {
@@ -298,6 +944,12 @@
         "ai",
         "t"
       ],
+      "ttsBreakdown": [
+        "wuh",
+        "ay",
+        "tuh"
+      ],
+      "ttsWord": "wait",
       "book": "A Play Day with My Brother Ray"
     },
     {
@@ -307,6 +959,11 @@
         "y",
         "ay"
       ],
+      "ttsBreakdown": [
+        "yuh",
+        "ay"
+      ],
+      "ttsWord": "yay",
       "book": "A Play Day with My Brother Ray"
     },
     {
@@ -317,6 +974,12 @@
         "a_e",
         "m"
       ],
+      "ttsBreakdown": [
+        "kuh",
+        "ay",
+        "mmm"
+      ],
+      "ttsWord": "came",
       "book": "A Hike by the Lake"
     },
     {
@@ -327,6 +990,12 @@
         "a_e",
         "v"
       ],
+      "ttsBreakdown": [
+        "kuh",
+        "ay",
+        "vvv"
+      ],
+      "ttsWord": "cave",
       "book": "A Hike by the Lake"
     },
     {
@@ -337,6 +1006,12 @@
         "a_e",
         "t"
       ],
+      "ttsBreakdown": [
+        "guh",
+        "ay",
+        "tuh"
+      ],
+      "ttsWord": "gate",
       "book": "A Hike by the Lake"
     },
     {
@@ -347,6 +1022,12 @@
         "a_e",
         "k"
       ],
+      "ttsBreakdown": [
+        "lll",
+        "ay",
+        "kuh"
+      ],
+      "ttsWord": "lake",
       "book": "A Hike by the Lake"
     },
     {
@@ -357,6 +1038,12 @@
         "a_e",
         "m"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "ay",
+        "mmm"
+      ],
+      "ttsWord": "same",
       "book": "A Hike by the Lake"
     },
     {
@@ -367,16 +1054,30 @@
         "a_e",
         "d"
       ],
+      "ttsBreakdown": [
+        "shh",
+        "ay",
+        "duh"
+      ],
+      "ttsWord": "shade",
       "book": "A Hike by the Lake"
     },
     {
       "word": "snake",
       "spellingUnitId": "ae",
       "decodingBreakdown": [
-        "sn",
+        "s",
+        "n",
         "a_e",
         "k"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "nnn",
+        "ay",
+        "kuh"
+      ],
+      "ttsWord": "snake",
       "book": "A Hike by the Lake"
     },
     {
@@ -387,6 +1088,12 @@
         "a_e",
         "k"
       ],
+      "ttsBreakdown": [
+        "tuh",
+        "ay",
+        "kuh"
+      ],
+      "ttsWord": "take",
       "book": "A Hike by the Lake"
     },
     {
@@ -397,6 +1104,12 @@
         "a_e",
         "k"
       ],
+      "ttsBreakdown": [
+        "wuh",
+        "ay",
+        "kuh"
+      ],
+      "ttsWord": "wake",
       "book": "A Hike by the Lake"
     },
     {
@@ -407,16 +1120,30 @@
         "i_e",
         "t"
       ],
+      "ttsBreakdown": [
+        "buh",
+        "eye",
+        "tuh"
+      ],
+      "ttsWord": "bite",
       "book": "A Hike by the Lake"
     },
     {
       "word": "drive",
       "spellingUnitId": "ie",
       "decodingBreakdown": [
-        "dr",
+        "d",
+        "r",
         "i_e",
         "v"
       ],
+      "ttsBreakdown": [
+        "duh",
+        "rrr",
+        "eye",
+        "vvv"
+      ],
+      "ttsWord": "drive",
       "book": "A Hike by the Lake"
     },
     {
@@ -427,6 +1154,12 @@
         "i_e",
         "v"
       ],
+      "ttsBreakdown": [
+        "fff",
+        "eye",
+        "vvv"
+      ],
+      "ttsWord": "five",
       "book": "A Hike by the Lake"
     },
     {
@@ -437,6 +1170,12 @@
         "i_e",
         "k"
       ],
+      "ttsBreakdown": [
+        "huh",
+        "eye",
+        "kuh"
+      ],
+      "ttsWord": "hike",
       "book": "A Hike by the Lake"
     },
     {
@@ -447,6 +1186,12 @@
         "i_e",
         "l"
       ],
+      "ttsBreakdown": [
+        "puh",
+        "eye",
+        "lll"
+      ],
+      "ttsWord": "pile",
       "book": "A Hike by the Lake"
     },
     {
@@ -457,26 +1202,48 @@
         "i_e",
         "d"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "eye",
+        "duh"
+      ],
+      "ttsWord": "side",
       "book": "A Hike by the Lake"
     },
     {
       "word": "slide",
       "spellingUnitId": "ie",
       "decodingBreakdown": [
-        "sl",
+        "s",
+        "l",
         "i_e",
         "d"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "lll",
+        "eye",
+        "duh"
+      ],
+      "ttsWord": "slide",
       "book": "A Hike by the Lake"
     },
     {
       "word": "smile",
       "spellingUnitId": "ie",
       "decodingBreakdown": [
-        "sm",
+        "s",
+        "m",
         "i_e",
         "l"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "mmm",
+        "eye",
+        "lll"
+      ],
+      "ttsWord": "smile",
       "book": "A Hike by the Lake"
     },
     {
@@ -487,6 +1254,12 @@
         "i_e",
         "m"
       ],
+      "ttsBreakdown": [
+        "tuh",
+        "eye",
+        "mmm"
+      ],
+      "ttsWord": "time",
       "book": "A Hike by the Lake"
     },
     {
@@ -497,6 +1270,12 @@
         "i_e",
         "l"
       ],
+      "ttsBreakdown": [
+        "whuh",
+        "eye",
+        "lll"
+      ],
+      "ttsWord": "while",
       "book": "A Hike by the Lake"
     },
     {
@@ -505,8 +1284,16 @@
       "decodingBreakdown": [
         "b",
         "ea",
-        "ns"
+        "n",
+        "s"
       ],
+      "ttsBreakdown": [
+        "buh",
+        "ee",
+        "nnn",
+        "sss"
+      ],
+      "ttsWord": "beans",
       "book": "What Little Deer Eat"
     },
     {
@@ -515,8 +1302,16 @@
       "decodingBreakdown": [
         "b",
         "ee",
-        "ts"
+        "t",
+        "s"
       ],
+      "ttsBreakdown": [
+        "buh",
+        "ee",
+        "tuh",
+        "sss"
+      ],
+      "ttsWord": "beets",
       "book": "What Little Deer Eat"
     },
     {
@@ -525,18 +1320,34 @@
       "decodingBreakdown": [
         "ch",
         "ee",
-        "rs"
+        "r",
+        "s"
       ],
+      "ttsBreakdown": [
+        "chuh",
+        "ee",
+        "rrr",
+        "sss"
+      ],
+      "ttsWord": "cheers",
       "book": "What Little Deer Eat"
     },
     {
       "word": "clear",
       "spellingUnitId": "ea_ee",
       "decodingBreakdown": [
-        "cl",
+        "c",
+        "l",
         "ea",
         "r"
       ],
+      "ttsBreakdown": [
+        "kuh",
+        "lll",
+        "ee",
+        "rrr"
+      ],
+      "ttsWord": "clear",
       "book": "What Little Deer Eat"
     },
     {
@@ -547,6 +1358,12 @@
         "ea",
         "r"
       ],
+      "ttsBreakdown": [
+        "duh",
+        "ee",
+        "rrr"
+      ],
+      "ttsWord": "dear",
       "book": "What Little Deer Eat"
     },
     {
@@ -557,6 +1374,12 @@
         "ee",
         "r"
       ],
+      "ttsBreakdown": [
+        "duh",
+        "ee",
+        "rrr"
+      ],
+      "ttsWord": "deer",
       "book": "What Little Deer Eat"
     },
     {
@@ -566,6 +1389,11 @@
         "ea",
         "t"
       ],
+      "ttsBreakdown": [
+        "ee",
+        "tuh"
+      ],
+      "ttsWord": "eat",
       "book": "What Little Deer Eat"
     },
     {
@@ -573,8 +1401,15 @@
       "spellingUnitId": "ea_ee",
       "decodingBreakdown": [
         "ea",
-        "ts"
+        "t",
+        "s"
       ],
+      "ttsBreakdown": [
+        "ee",
+        "tuh",
+        "sss"
+      ],
+      "ttsWord": "eats",
       "book": "What Little Deer Eat"
     },
     {
@@ -583,18 +1418,34 @@
       "decodingBreakdown": [
         "f",
         "ee",
-        "ds"
+        "d",
+        "s"
       ],
+      "ttsBreakdown": [
+        "fff",
+        "ee",
+        "duh",
+        "sss"
+      ],
+      "ttsWord": "feeds",
       "book": "What Little Deer Eat"
     },
     {
       "word": "green",
       "spellingUnitId": "ea_ee",
       "decodingBreakdown": [
-        "gr",
+        "g",
+        "r",
         "ee",
         "n"
       ],
+      "ttsBreakdown": [
+        "guh",
+        "rrr",
+        "ee",
+        "nnn"
+      ],
+      "ttsWord": "green",
       "book": "What Little Deer Eat"
     },
     {
@@ -603,8 +1454,16 @@
       "decodingBreakdown": [
         "m",
         "ea",
-        "ns"
+        "n",
+        "s"
       ],
+      "ttsBreakdown": [
+        "mmm",
+        "ee",
+        "nnn",
+        "sss"
+      ],
+      "ttsWord": "means",
       "book": "What Little Deer Eat"
     },
     {
@@ -615,36 +1474,70 @@
         "ea",
         "s"
       ],
+      "ttsBreakdown": [
+        "puh",
+        "ee",
+        "sss"
+      ],
+      "ttsWord": "peas",
       "book": "What Little Deer Eat"
     },
     {
       "word": "street",
       "spellingUnitId": "ea_ee",
       "decodingBreakdown": [
-        "str",
+        "s",
+        "t",
+        "r",
         "ee",
         "t"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "tuh",
+        "rrr",
+        "ee",
+        "tuh"
+      ],
+      "ttsWord": "street",
       "book": "What Little Deer Eat"
     },
     {
       "word": "sweet",
       "spellingUnitId": "ea_ee",
       "decodingBreakdown": [
-        "sw",
+        "s",
+        "w",
         "ee",
         "t"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "wuh",
+        "ee",
+        "tuh"
+      ],
+      "ttsWord": "sweet",
       "book": "What Little Deer Eat"
     },
     {
       "word": "treats",
       "spellingUnitId": "ea_ee",
       "decodingBreakdown": [
-        "tr",
+        "t",
+        "r",
         "ea",
-        "ts"
+        "t",
+        "s"
       ],
+      "ttsBreakdown": [
+        "tuh",
+        "rrr",
+        "ee",
+        "tuh",
+        "sss"
+      ],
+      "ttsWord": "treats",
       "book": "What Little Deer Eat"
     },
     {
@@ -655,6 +1548,12 @@
         "ir",
         "d"
       ],
+      "ttsBreakdown": [
+        "buh",
+        "er",
+        "duh"
+      ],
+      "ttsWord": "bird",
       "book": "Bird School"
     },
     {
@@ -663,8 +1562,16 @@
       "decodingBreakdown": [
         "b",
         "ir",
-        "ds"
+        "d",
+        "s"
       ],
+      "ttsBreakdown": [
+        "buh",
+        "er",
+        "duh",
+        "sss"
+      ],
+      "ttsWord": "birds",
       "book": "Bird School"
     },
     {
@@ -675,6 +1582,12 @@
         "ir",
         "p"
       ],
+      "ttsBreakdown": [
+        "chuh",
+        "er",
+        "puh"
+      ],
+      "ttsWord": "chirp",
       "book": "Bird School"
     },
     {
@@ -683,8 +1596,18 @@
       "decodingBreakdown": [
         "ch",
         "ir",
-        "ped"
+        "p",
+        "e",
+        "d"
       ],
+      "ttsBreakdown": [
+        "chuh",
+        "er",
+        "puh",
+        "e",
+        "duh"
+      ],
+      "ttsWord": "chirped",
       "book": "Bird School"
     },
     {
@@ -693,8 +1616,16 @@
       "decodingBreakdown": [
         "f",
         "ir",
-        "st"
+        "s",
+        "t"
       ],
+      "ttsBreakdown": [
+        "fff",
+        "er",
+        "sss",
+        "tuh"
+      ],
+      "ttsWord": "first",
       "book": "Bird School"
     },
     {
@@ -703,8 +1634,16 @@
       "decodingBreakdown": [
         "g",
         "ir",
-        "ls"
+        "l",
+        "s"
       ],
+      "ttsBreakdown": [
+        "guh",
+        "er",
+        "lll",
+        "sss"
+      ],
+      "ttsWord": "girls",
       "book": "Bird School"
     },
     {
@@ -715,6 +1654,12 @@
         "er",
         "ch"
       ],
+      "ttsBreakdown": [
+        "puh",
+        "er",
+        "chuh"
+      ],
+      "ttsWord": "perch",
       "book": "Bird School"
     },
     {
@@ -725,6 +1670,12 @@
         "ir",
         "d"
       ],
+      "ttsBreakdown": [
+        "thh",
+        "er",
+        "duh"
+      ],
+      "ttsWord": "third",
       "book": "Bird School"
     },
     {
@@ -735,6 +1686,12 @@
         "ur",
         "n"
       ],
+      "ttsBreakdown": [
+        "tuh",
+        "er",
+        "nnn"
+      ],
+      "ttsWord": "turn",
       "book": "Bird School"
     },
     {
@@ -744,6 +1701,11 @@
         "ar",
         "t"
       ],
+      "ttsBreakdown": [
+        "ar",
+        "tuh"
+      ],
+      "ttsWord": "art",
       "book": "Fox Spills the Stars"
     },
     {
@@ -754,6 +1716,12 @@
         "ar",
         "k"
       ],
+      "ttsBreakdown": [
+        "duh",
+        "ar",
+        "kuh"
+      ],
+      "ttsWord": "dark",
       "book": "Fox Spills the Stars"
     },
     {
@@ -762,8 +1730,18 @@
       "decodingBreakdown": [
         "d",
         "ar",
-        "ted"
+        "t",
+        "e",
+        "d"
       ],
+      "ttsBreakdown": [
+        "duh",
+        "ar",
+        "tuh",
+        "e",
+        "duh"
+      ],
+      "ttsWord": "darted",
       "book": "Fox Spills the Stars"
     },
     {
@@ -774,6 +1752,12 @@
         "ar",
         "d"
       ],
+      "ttsBreakdown": [
+        "huh",
+        "ar",
+        "duh"
+      ],
+      "ttsWord": "hard",
       "book": "Fox Spills the Stars"
     },
     {
@@ -783,6 +1767,11 @@
         "j",
         "ar"
       ],
+      "ttsBreakdown": [
+        "juh",
+        "ar"
+      ],
+      "ttsWord": "jar",
       "book": "Fox Spills the Stars"
     },
     {
@@ -793,36 +1782,70 @@
         "ar",
         "t"
       ],
+      "ttsBreakdown": [
+        "puh",
+        "ar",
+        "tuh"
+      ],
+      "ttsWord": "part",
       "book": "Fox Spills the Stars"
     },
     {
       "word": "smart",
       "spellingUnitId": "ar",
       "decodingBreakdown": [
-        "sm",
+        "s",
+        "m",
         "ar",
         "t"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "mmm",
+        "ar",
+        "tuh"
+      ],
+      "ttsWord": "smart",
       "book": "Fox Spills the Stars"
     },
     {
       "word": "stars",
       "spellingUnitId": "ar",
       "decodingBreakdown": [
-        "st",
+        "s",
+        "t",
         "ar",
         "s"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "tuh",
+        "ar",
+        "sss"
+      ],
+      "ttsWord": "stars",
       "book": "Fox Spills the Stars"
     },
     {
       "word": "starting",
       "spellingUnitId": "ar",
       "decodingBreakdown": [
-        "st",
+        "s",
+        "t",
         "ar",
-        "ting"
+        "t",
+        "i",
+        "ng"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "tuh",
+        "ar",
+        "tuh",
+        "i",
+        "ng"
+      ],
+      "ttsWord": "starting",
       "book": "Fox Spills the Stars"
     },
     {
@@ -832,6 +1855,11 @@
         "t",
         "ar"
       ],
+      "ttsBreakdown": [
+        "tuh",
+        "ar"
+      ],
+      "ttsWord": "tar",
       "book": "Fox Spills the Stars"
     },
     {
@@ -842,6 +1870,12 @@
         "or",
         "k"
       ],
+      "ttsBreakdown": [
+        "kuh",
+        "or",
+        "kuh"
+      ],
+      "ttsWord": "cork",
       "book": "Fox Spills the Stars"
     },
     {
@@ -852,6 +1886,12 @@
         "or",
         "m"
       ],
+      "ttsBreakdown": [
+        "fff",
+        "or",
+        "mmm"
+      ],
+      "ttsWord": "form",
       "book": "Fox Spills the Stars"
     },
     {
@@ -860,8 +1900,18 @@
       "decodingBreakdown": [
         "f",
         "or",
-        "med"
+        "m",
+        "e",
+        "d"
       ],
+      "ttsBreakdown": [
+        "fff",
+        "or",
+        "mmm",
+        "e",
+        "duh"
+      ],
+      "ttsWord": "formed",
       "book": "Fox Spills the Stars"
     },
     {
@@ -872,35 +1922,66 @@
         "or",
         "e"
       ],
+      "ttsBreakdown": [
+        "mmm",
+        "or",
+        "e"
+      ],
+      "ttsWord": "more",
       "book": "Fox Spills the Stars"
     },
     {
       "word": "stored",
       "spellingUnitId": "or",
       "decodingBreakdown": [
-        "st",
+        "s",
+        "t",
         "or",
-        "ed"
+        "e",
+        "d"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "tuh",
+        "or",
+        "e",
+        "duh"
+      ],
+      "ttsWord": "stored",
       "book": "Fox Spills the Stars"
     },
     {
       "word": "blow",
       "spellingUnitId": "ew_oa_oo_ow",
       "decodingBreakdown": [
-        "bl",
+        "b",
+        "l",
         "ow"
       ],
+      "ttsBreakdown": [
+        "buh",
+        "lll",
+        "oh"
+      ],
+      "ttsWord": "blow",
       "book": "Cook Food on a Campfire"
     },
     {
       "word": "brown",
       "spellingUnitId": "ew_oa_oo_ow",
       "decodingBreakdown": [
-        "br",
+        "b",
+        "r",
         "ow",
         "n"
       ],
+      "ttsBreakdown": [
+        "buh",
+        "rrr",
+        "ow",
+        "nnn"
+      ],
+      "ttsWord": "brown",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -910,6 +1991,11 @@
         "ch",
         "ow"
       ],
+      "ttsBreakdown": [
+        "chuh",
+        "ow"
+      ],
+      "ttsWord": "chow",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -918,8 +2004,16 @@
       "decodingBreakdown": [
         "c",
         "oa",
-        "ls"
+        "l",
+        "s"
       ],
+      "ttsBreakdown": [
+        "kuh",
+        "oh",
+        "lll",
+        "sss"
+      ],
+      "ttsWord": "coals",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -930,6 +2024,12 @@
         "oo",
         "k"
       ],
+      "ttsBreakdown": [
+        "kuh",
+        "uh",
+        "kuh"
+      ],
+      "ttsWord": "cook",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -938,8 +2038,18 @@
       "decodingBreakdown": [
         "c",
         "oo",
-        "ked"
+        "k",
+        "e",
+        "d"
       ],
+      "ttsBreakdown": [
+        "kuh",
+        "oo",
+        "kuh",
+        "e",
+        "duh"
+      ],
+      "ttsWord": "cooked",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -948,8 +2058,18 @@
       "decodingBreakdown": [
         "c",
         "oo",
-        "king"
+        "k",
+        "i",
+        "ng"
       ],
+      "ttsBreakdown": [
+        "kuh",
+        "oo",
+        "kuh",
+        "i",
+        "ng"
+      ],
+      "ttsWord": "cooking",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -960,6 +2080,12 @@
         "oo",
         "l"
       ],
+      "ttsBreakdown": [
+        "kuh",
+        "oo",
+        "lll"
+      ],
+      "ttsWord": "cool",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -968,17 +2094,32 @@
       "decodingBreakdown": [
         "c",
         "oo",
-        "ls"
+        "l",
+        "s"
       ],
+      "ttsBreakdown": [
+        "kuh",
+        "oo",
+        "lll",
+        "sss"
+      ],
+      "ttsWord": "cools",
       "book": "Cook Food on a Campfire"
     },
     {
       "word": "crew",
       "spellingUnitId": "ew_oa_oo_ow",
       "decodingBreakdown": [
-        "cr",
+        "c",
+        "r",
         "ew"
       ],
+      "ttsBreakdown": [
+        "kuh",
+        "rrr",
+        "oo"
+      ],
+      "ttsWord": "crew",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -989,6 +2130,12 @@
         "ow",
         "n"
       ],
+      "ttsBreakdown": [
+        "duh",
+        "ow",
+        "nnn"
+      ],
+      "ttsWord": "down",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -999,15 +2146,28 @@
         "oo",
         "d"
       ],
+      "ttsBreakdown": [
+        "fff",
+        "oo",
+        "duh"
+      ],
+      "ttsWord": "food",
       "book": "Cook Food on a Campfire"
     },
     {
       "word": "glow",
       "spellingUnitId": "ew_oa_oo_ow",
       "decodingBreakdown": [
-        "gl",
+        "g",
+        "l",
         "ow"
       ],
+      "ttsBreakdown": [
+        "guh",
+        "lll",
+        "oh"
+      ],
+      "ttsWord": "glow",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -1018,16 +2178,30 @@
         "oo",
         "d"
       ],
+      "ttsBreakdown": [
+        "guh",
+        "uh",
+        "duh"
+      ],
+      "ttsWord": "good",
       "book": "Cook Food on a Campfire"
     },
     {
       "word": "grown",
       "spellingUnitId": "ew_oa_oo_ow",
       "decodingBreakdown": [
-        "gr",
+        "g",
+        "r",
         "ow",
         "n"
       ],
+      "ttsBreakdown": [
+        "guh",
+        "rrr",
+        "oh",
+        "nnn"
+      ],
+      "ttsWord": "grown",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -1037,17 +2211,39 @@
         "l",
         "ow"
       ],
+      "ttsBreakdown": [
+        "lll",
+        "oh"
+      ],
+      "ttsWord": "low",
       "book": "Cook Food on a Campfire"
     },
     {
       "word": "marshmallows",
       "spellingUnitId": "ew_oa_oo_ow",
       "decodingBreakdown": [
-        "marshmal",
-        "l",
+        "m",
+        "a",
+        "r",
+        "sh",
+        "m",
+        "a",
+        "ll",
         "ow",
         "s"
       ],
+      "ttsBreakdown": [
+        "mmm",
+        "a",
+        "rrr",
+        "shh",
+        "mmm",
+        "a",
+        "ll",
+        "oh",
+        "sss"
+      ],
+      "ttsWord": "marshmallows",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -1055,8 +2251,15 @@
       "spellingUnitId": "ew_oa_oo_ow",
       "decodingBreakdown": [
         "oo",
-        "ze"
+        "z",
+        "e"
       ],
+      "ttsBreakdown": [
+        "oo",
+        "zzz",
+        "e"
+      ],
+      "ttsWord": "ooze",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -1067,6 +2270,12 @@
         "oa",
         "r"
       ],
+      "ttsBreakdown": [
+        "rrr",
+        "oh",
+        "rrr"
+      ],
+      "ttsWord": "roar",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -1075,8 +2284,16 @@
       "decodingBreakdown": [
         "r",
         "oa",
-        "st"
+        "s",
+        "t"
       ],
+      "ttsBreakdown": [
+        "rrr",
+        "oh",
+        "sss",
+        "tuh"
+      ],
+      "ttsWord": "roast",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -1085,8 +2302,20 @@
       "decodingBreakdown": [
         "r",
         "oa",
-        "sted"
+        "s",
+        "t",
+        "e",
+        "d"
       ],
+      "ttsBreakdown": [
+        "rrr",
+        "oh",
+        "sss",
+        "tuh",
+        "e",
+        "duh"
+      ],
+      "ttsWord": "roasted",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -1097,15 +2326,28 @@
         "oo",
         "n"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "oo",
+        "nnn"
+      ],
+      "ttsWord": "soon",
       "book": "Cook Food on a Campfire"
     },
     {
       "word": "stew",
       "spellingUnitId": "ew_oa_oo_ow",
       "decodingBreakdown": [
-        "st",
+        "s",
+        "t",
         "ew"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "tuh",
+        "oo"
+      ],
+      "ttsWord": "stew",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -1114,8 +2356,16 @@
       "decodingBreakdown": [
         "t",
         "oa",
-        "st"
+        "s",
+        "t"
       ],
+      "ttsBreakdown": [
+        "tuh",
+        "oh",
+        "sss",
+        "tuh"
+      ],
+      "ttsWord": "toast",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -1124,8 +2374,20 @@
       "decodingBreakdown": [
         "t",
         "oa",
-        "sted"
+        "s",
+        "t",
+        "e",
+        "d"
       ],
+      "ttsBreakdown": [
+        "tuh",
+        "oh",
+        "sss",
+        "tuh",
+        "e",
+        "duh"
+      ],
+      "ttsWord": "toasted",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -1134,8 +2396,16 @@
       "decodingBreakdown": [
         "t",
         "oo",
-        "ls"
+        "l",
+        "s"
       ],
+      "ttsBreakdown": [
+        "tuh",
+        "oo",
+        "lll",
+        "sss"
+      ],
+      "ttsWord": "tools",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -1146,6 +2416,12 @@
         "oo",
         "d"
       ],
+      "ttsBreakdown": [
+        "wuh",
+        "uh",
+        "duh"
+      ],
+      "ttsWord": "wood",
       "book": "Cook Food on a Campfire"
     },
     {
@@ -1155,6 +2431,11 @@
         "b",
         "all"
       ],
+      "ttsBreakdown": [
+        "buh",
+        "awl"
+      ],
+      "ttsWord": "ball",
       "book": "Ball Games"
     },
     {
@@ -1163,28 +2444,68 @@
       "decodingBreakdown": [
         "b",
         "all",
-        "park"
+        "p",
+        "a",
+        "r",
+        "k"
       ],
+      "ttsBreakdown": [
+        "buh",
+        "awl",
+        "puh",
+        "a",
+        "rrr",
+        "kuh"
+      ],
+      "ttsWord": "ballpark",
       "book": "Ball Games"
     },
     {
       "word": "baseball",
       "spellingUnitId": "all",
       "decodingBreakdown": [
-        "base",
+        "b",
+        "a",
+        "s",
+        "e",
         "b",
         "all"
       ],
+      "ttsBreakdown": [
+        "buh",
+        "a",
+        "sss",
+        "e",
+        "buh",
+        "awl"
+      ],
+      "ttsWord": "baseball",
       "book": "Ball Games"
     },
     {
       "word": "basketball",
       "spellingUnitId": "all",
       "decodingBreakdown": [
-        "basket",
+        "b",
+        "a",
+        "s",
+        "k",
+        "e",
+        "t",
         "b",
         "all"
       ],
+      "ttsBreakdown": [
+        "buh",
+        "a",
+        "sss",
+        "kuh",
+        "e",
+        "tuh",
+        "buh",
+        "awl"
+      ],
+      "ttsWord": "basketball",
       "book": "Ball Games"
     },
     {
@@ -1193,37 +2514,74 @@
       "decodingBreakdown": [
         "c",
         "all",
-        "ed"
+        "e",
+        "d"
       ],
+      "ttsBreakdown": [
+        "kuh",
+        "awl",
+        "e",
+        "duh"
+      ],
+      "ttsWord": "called",
       "book": "Ball Games"
     },
     {
       "word": "dodgeball",
       "spellingUnitId": "all",
       "decodingBreakdown": [
-        "dodge",
+        "d",
+        "o",
+        "dg",
+        "e",
         "b",
         "all"
       ],
+      "ttsBreakdown": [
+        "duh",
+        "o",
+        "juh",
+        "e",
+        "buh",
+        "awl"
+      ],
+      "ttsWord": "dodgeball",
       "book": "Ball Games"
     },
     {
       "word": "kickball",
       "spellingUnitId": "all",
       "decodingBreakdown": [
-        "kick",
+        "k",
+        "i",
+        "ck",
         "b",
         "all"
       ],
+      "ttsBreakdown": [
+        "kuh",
+        "i",
+        "kuh",
+        "buh",
+        "awl"
+      ],
+      "ttsWord": "kickball",
       "book": "Ball Games"
     },
     {
       "word": "small",
       "spellingUnitId": "all",
       "decodingBreakdown": [
-        "sm",
+        "s",
+        "m",
         "all"
       ],
+      "ttsBreakdown": [
+        "sss",
+        "mmm",
+        "awl"
+      ],
+      "ttsWord": "small",
       "book": "Ball Games"
     },
     {
@@ -1233,162 +2591,198 @@
         "t",
         "all"
       ],
+      "ttsBreakdown": [
+        "tuh",
+        "awl"
+      ],
+      "ttsWord": "tall",
       "book": "Ball Games"
     }
   ],
   "sightWords": [
     {
       "word": "walk",
+      "ttsWord": "walk",
       "sourceEmail": "2026-03-13",
       "book": "A play day with my brother Ray"
     },
     {
       "word": "talk",
+      "ttsWord": "talk",
       "sourceEmail": "2026-03-13",
       "book": "A play day with my brother Ray"
     },
     {
       "word": "because",
+      "ttsWord": "because",
       "sourceEmail": "2026-03-13",
       "book": "A play day with my brother Ray"
     },
     {
       "word": "children",
+      "ttsWord": "children",
       "sourceEmail": "2026-03-13",
       "book": "A play day with my brother Ray"
     },
     {
       "word": "every",
+      "ttsWord": "every",
       "sourceEmail": "2025-11-07",
       "book": "A Hike by the Lake"
     },
     {
       "word": "other",
+      "ttsWord": "other",
       "sourceEmail": "2025-11-07",
       "book": "A Hike by the Lake"
     },
     {
       "word": "mother",
+      "ttsWord": "mother",
       "sourceEmail": "2025-11-07",
       "book": "A Hike by the Lake"
     },
     {
       "word": "brother",
+      "ttsWord": "brother",
       "sourceEmail": "2025-11-07",
       "book": "A Hike by the Lake"
     },
     {
       "word": "woman",
+      "ttsWord": "woman",
       "sourceEmail": "2025-11-14",
       "book": "Life in a Plains Tribe Part 1"
     },
     {
       "word": "women",
+      "ttsWord": "women",
       "sourceEmail": "2025-11-14",
       "book": "Life in a Plains Tribe Part 1"
     },
     {
       "word": "boy",
+      "ttsWord": "boy",
       "sourceEmail": "2025-11-14",
       "book": "Life in a Plains Tribe Part 1"
     },
     {
       "word": "one",
+      "ttsWord": "one",
       "sourceEmail": "2025-12-12",
       "book": "Out My Window"
     },
     {
       "word": "two",
+      "ttsWord": "two",
       "sourceEmail": "2025-12-12",
       "book": "Out My Window"
     },
     {
       "word": "don't",
+      "ttsWord": "don't",
       "sourceEmail": "2025-12-18",
       "book": "What Little Deer Eat"
     },
     {
       "word": "won't",
+      "ttsWord": "won't",
       "sourceEmail": "2025-12-18",
       "book": "What Little Deer Eat"
     },
     {
       "word": "too",
+      "ttsWord": "too",
       "sourceEmail": "2025-12-18",
       "book": "What Little Deer Eat"
     },
     {
       "word": "who",
+      "ttsWord": "who",
       "sourceEmail": "2026-01-08",
       "book": "Bird School"
     },
     {
       "word": "school",
+      "ttsWord": "school",
       "sourceEmail": "2026-01-08",
       "book": "Bird School"
     },
     {
       "word": "thought",
+      "ttsWord": "thought",
       "sourceEmail": "2026-01-30",
       "book": "Fox Spills the Stars"
     },
     {
       "word": "father",
+      "ttsWord": "father",
       "sourceEmail": "2026-01-30",
       "book": "Fox Spills the Stars"
     },
     {
       "word": "even",
+      "ttsWord": "even",
       "sourceEmail": "2026-03-27",
       "book": "Ball Games"
     },
     {
       "word": "picture",
+      "ttsWord": "picture",
       "sourceEmail": "2026-03-27",
       "book": "Ball Games"
     },
     {
       "word": "give",
+      "ttsWord": "give",
       "sourceEmail": "2026-03-03",
       "book": "Fun fort"
     },
     {
       "word": "live",
+      "ttsWord": "live",
       "sourceEmail": "2026-03-03",
       "book": "Fun fort"
     },
     {
       "word": "ever",
+      "ttsWord": "ever",
       "sourceEmail": "2026-03-03",
       "book": "Fun fort"
     },
     {
       "word": "never",
+      "ttsWord": "never",
       "sourceEmail": "2026-03-03",
       "book": "Fun fort"
     },
     {
       "word": "only",
+      "ttsWord": "only",
       "sourceEmail": "2026-03-03",
       "book": "Fun fort"
     },
     {
       "word": "head",
+      "ttsWord": "head",
       "sourceEmail": "2026-03-03",
       "book": "Fun fort"
     },
     {
       "word": "read",
+      "ttsWord": "read",
       "sourceEmail": "2026-03-03",
       "book": "Fun fort"
     },
     {
       "word": "after",
+      "ttsWord": "after",
       "sourceEmail": "2026-03-03",
       "book": "Fun fort"
     },
     {
       "word": "work",
+      "ttsWord": "work",
       "sourceEmail": "2026-03-03",
       "book": "Fun fort"
     }
