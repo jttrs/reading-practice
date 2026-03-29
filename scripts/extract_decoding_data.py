@@ -141,24 +141,16 @@ def _extract_spelling_patterns(text: str) -> list[dict]:
     """Extract spelling sound patterns, phonemes, and examples from email text."""
     results = []
 
-    # Find the spelling sound section — must start at beginning of line
-    # to avoid matching mid-sentence references like "focus on spelling sounds,"
-    spelling_section_match = re.search(
-        r"^[Ss]pelling [Ss]ound[s]?\s*(?:focus|for this week)?[:\s]*\n(.*?)(?=^[Ss]ight [Ww]ord|^[Hh]igh.[Ff]requency|^[Nn]o sight|^[Tt]hank|^[Ll]et me know)",
+    # Find the spelling section — capture content on same line AND following lines
+    section_match = re.search(
+        r"^[Ss]pelling [Ss]ound[s]?\s*(?:focus|for this week)?[:\s]*(.*?)(?=^[Ss]ight [Ww]ord|^[Hh]igh.[Ff]requency|^[Nn]o sight|^[Tt]hank|^[Ll]et me know|\Z)",
         text,
         re.DOTALL | re.IGNORECASE | re.MULTILINE,
     )
-    if not spelling_section_match:
-        # Fallback: colon followed by content on same line (single-line format)
-        spelling_section_match = re.search(
-            r"[Ss]pelling [Ss]ound[s]?\s*(?:focus|for this week)?\s*:\s*(.+?)$",
-            text,
-            re.IGNORECASE | re.MULTILINE,
-        )
-    if not spelling_section_match:
+    if not section_match:
         return results
 
-    section = spelling_section_match.group(1).strip()
+    section = section_match.group(1).strip()
 
     # Check for "No spelling sound" or "none"
     if re.search(r"no spelling sound", section, re.IGNORECASE):
@@ -166,64 +158,108 @@ def _extract_spelling_patterns(text: str) -> list[dict]:
     if re.match(r"\s*none\s*$", section, re.IGNORECASE):
         return results
 
-    # Pattern: "a_e /a/ → lake" or "ai,ay /a/" or "Er, ir, ur / ur/"
-    # Also: "Ea – eat" / "Ee - tree" / "all -/awl/"
-    # General approach: find groups of patterns and their phonemes
+    # --- Phase 1: Extract and remove "Example:" lines ---
+    pattern_examples: dict[str, list[str]] = {}  # pattern -> [words]
+    generic_examples: list[str] = []
 
-    # Extract any "Example:" lines first, then remove them from section
-    extra_examples = []
-    example_match = re.search(r"[Ee]xample[s]?:\s*(.+?)$", section, re.MULTILINE)
-    if example_match:
-        ex_text = example_match.group(1)
-        for part in re.split(r"[/,]", ex_text):
-            part = re.sub(r"[a-z_]+\s*:", "", part, flags=re.IGNORECASE).strip()
-            part = part.strip(" -–")
-            if part and part.isalpha() and part.lower() not in ("example", "examples"):
-                extra_examples.append(part.lower())
-        # Remove the Example line from section to avoid double-parsing
-        section = re.sub(r"[Ee]xample[s]?:\s*.+?$", "", section, flags=re.MULTILINE).strip()
+    for ex_match in re.finditer(r"[Ee]xample[s]?:\s*(.+?)$", section, re.MULTILINE):
+        ex_text = ex_match.group(1).strip()
+        # Pattern-specific: "ar: car / or: fork"
+        specific = re.findall(r"([a-z_]+)\s*:\s*(\w+)", ex_text, re.IGNORECASE)
+        if specific:
+            for pat, word in specific:
+                pattern_examples.setdefault(pat.lower(), []).append(word.lower())
+        else:
+            # "all - tall" format
+            dash_match = re.match(r"([a-z_]+)\s*[-\u2013]\s*(\w+)", ex_text, re.IGNORECASE)
+            if dash_match:
+                pattern_examples.setdefault(dash_match.group(1).lower(), []).append(
+                    dash_match.group(2).lower()
+                )
+            else:
+                # Generic: "paid, play"
+                for part in re.split(r"[,;/]", ex_text):
+                    w = part.strip().strip("-\u2013: ")
+                    if w and w.isalpha():
+                        generic_examples.append(w.lower())
 
-    # Try structured format: "pattern /phoneme/ → example"
+    section = re.sub(r"[Ee]xample[s]?:\s*.+?$", "", section, flags=re.MULTILINE).strip()
+
+    # --- Phase 2: Try structured format with phonemes ---
+    # Matches: "a_e /a/ \u2192 lake", "ar/ar/", "ea, ee /e/", "u_e /u/ \u2192 cube; flute"
     structured = re.findall(
-        r"([a-z_]+(?:\s*,\s*[a-z_]+)*)\s*/([^/]+)/\s*(?:[→\-–:]\s*(\w+))?",
+        r"([a-z_]+(?:\s*,\s*[a-z_]+)*)\s*/([^/]+)/\s*(?:[\u2192\-\u2013:]\s*([^\n/]+?))?"
+        r"(?:\s*(?:,|\n|$))",
         section,
         re.IGNORECASE,
     )
     if structured:
-        for patterns_str, phoneme, example in structured:
+        for patterns_str, phoneme, examples_str in structured:
             patterns = [p.strip().lower() for p in re.split(r"[,\s]+", patterns_str) if p.strip()]
-            examples = [example.lower()] if example else []
-            if not examples and extra_examples:
-                examples = extra_examples
+            examples = []
+            if examples_str and examples_str.strip():
+                for part in re.split(r"[;,]", examples_str):
+                    w = part.strip()
+                    if w and w.isalpha():
+                        examples.append(w.lower())
+            # Add pattern-specific examples from Example: lines
+            for p in patterns:
+                for ex in pattern_examples.get(p, []):
+                    if ex not in examples:
+                        examples.append(ex)
+            if not examples and generic_examples:
+                examples = list(generic_examples)
+
             results.append({
                 "patterns": patterns,
                 "phoneme": f"/{phoneme.strip()}/",
                 "examples": examples,
             })
-        return results
 
-    # Try format: "Ea – eat" on separate lines
-    line_patterns = re.findall(
-        r"([A-Za-z_]+(?:\s*,\s*[A-Za-z_]+)*)\s*[–\-:]\s*(?:/([^/]+)/)?\s*(\w+)?",
-        section,
-    )
-    if line_patterns:
-        for patterns_str, phoneme, example in line_patterns:
-            patterns = [p.strip().lower() for p in re.split(r"[,\s]+", patterns_str) if p.strip()]
-            # Filter out noise words
-            patterns = [p for p in patterns if len(p) <= 4 and p.isalpha() or "_" in p]
-            if not patterns:
+        # Process remaining lines for follow-up examples:
+        # "Ea \u2013 eat" / "Ee - tree" / "Fern, bird, turn"
+        for line in section.split("\n"):
+            line = line.strip()
+            if not line or re.search(r"/[^/]+/", line):
                 continue
-            examples = [example.lower()] if example else []
-            phoneme_str = f"/{phoneme.strip()}/" if phoneme else ""
-            results.append({
-                "patterns": patterns,
-                "phoneme": phoneme_str,
-                "examples": examples,
-            })
+            # Single pattern-example pair: "Ea \u2013 eat"
+            pair_match = re.match(r"([A-Za-z_]{1,4})\s*[-\u2013]\s*(\w+)$", line)
+            if pair_match:
+                pat = pair_match.group(1).lower()
+                word = pair_match.group(2).lower()
+                for r in results:
+                    if pat in r["patterns"] and word not in r["examples"]:
+                        r["examples"].append(word)
+                        break
+                continue
+            # Comma-separated examples: "Fern, bird, turn"
+            if "," in line and len(results) == 1:
+                words = [w.strip().lower() for w in line.split(",") if w.strip().isalpha()]
+                for w in words:
+                    if w not in results[0]["examples"]:
+                        results[0]["examples"].append(w)
+
         return results
 
-    # Try comma-separated patterns without phonemes: "Oa, ow, oo, ew"
+    # --- Phase 3: Single pattern with phoneme: "all -/awl/" ---
+    single_match = re.match(
+        r"^\s*([a-z_]+)\s*[-\u2013]?\s*/([^/]+)/",
+        section.strip(),
+        re.IGNORECASE,
+    )
+    if single_match:
+        pat = single_match.group(1).lower()
+        examples = pattern_examples.get(pat, [])
+        if not examples:
+            examples = list(generic_examples)
+        results.append({
+            "patterns": [pat],
+            "phoneme": f"/{single_match.group(2).strip()}/",
+            "examples": examples,
+        })
+        return results
+
+    # --- Phase 4: Comma-separated patterns without phonemes: "Oa, ow, oo, ew" ---
     comma_match = re.match(
         r"^([A-Za-z_]+(?:\s*,\s*[A-Za-z_]+)+)\s*$",
         section.strip(),
@@ -234,22 +270,9 @@ def _extract_spelling_patterns(text: str) -> list[dict]:
         results.append({
             "patterns": patterns,
             "phoneme": "",
-            "examples": [],
+            "examples": list(generic_examples),
         })
         return results
-
-    # Try single pattern: "all -/awl/"
-    single_match = re.match(
-        r"^\s*([a-z_]+)\s*[-–]?\s*/([^/]+)/",
-        section.strip(),
-        re.IGNORECASE,
-    )
-    if single_match:
-        results.append({
-            "patterns": [single_match.group(1).lower()],
-            "phoneme": f"/{single_match.group(2).strip()}/",
-            "examples": [],
-        })
 
     return results
 
@@ -273,43 +296,32 @@ def _extract_sight_words(text: str) -> list[str]:
     if re.search(r"no sight word", section, re.IGNORECASE):
         return words
 
-    # Extract numbered or listed words: "1. every" or just "every"
+    # Normalize curly apostrophes to straight
+    section = section.replace("\u2019", "'").replace("\u2018", "'")
+
     for line in section.split("\n"):
         line = line.strip()
         if not line:
             continue
         # Remove numbering
         cleaned = re.sub(r"^\d+[.)]\s*", "", line).strip()
-        # Remove quotes and other punctuation
-        cleaned = cleaned.strip("\"'\u201c\u201d.,;:")
-        if cleaned and len(cleaned) < 200:
-            # May be comma-separated: "give, live, ever, never"
-            if "," in cleaned:
-                for w in cleaned.split(","):
-                    w = w.strip().lower()
-                    if w and w.isalpha():
-                        words.append(w)
-            else:
-                w = cleaned.lower().strip()
+        # Remove outer quotes (but not apostrophes within words)
+        cleaned = cleaned.strip("\"\u201c\u201d.,:")
+        if not cleaned or len(cleaned) > 200:
+            continue
+
+        # Split by commas and semicolons
+        if "," in cleaned or ";" in cleaned:
+            for w in re.split(r"[,;]", cleaned):
+                w = w.strip().lower()
                 if w and all(c.isalpha() or c == "'" for c in w):
                     words.append(w)
+        else:
+            w = cleaned.lower().strip()
+            if w and all(c.isalpha() or c == "'" for c in w):
+                words.append(w)
 
     return words
-
-
-def _find_example_words_in_section(text: str) -> list[str]:
-    """Find example words mentioned alongside spelling patterns."""
-    examples = []
-    # Pattern: "Example: word1 / word2" or "example: ar: car / or: fork"
-    ex_match = re.search(r"[Ee]xample[s]?:\s*(.+?)(?:\n|$)", text)
-    if ex_match:
-        ex_text = ex_match.group(1)
-        # Extract words, skip pattern labels like "ar:"
-        for part in re.split(r"[/,]", ex_text):
-            part = re.sub(r"[a-z_]+\s*:", "", part, flags=re.IGNORECASE).strip()
-            if part and part.isalpha():
-                examples.append(part.lower())
-    return examples
 
 
 @register_parser("sophie-emails")
@@ -325,13 +337,6 @@ def parse_emails(emails_dir: Path) -> list[EmailData]:
         book_titles = _extract_book_titles(text)
         spelling_patterns = _extract_spelling_patterns(text)
         sight_words = _extract_sight_words(text)
-
-        # Try to pick up example words from the broader text if not in structured parse
-        if spelling_patterns:
-            extra_examples = _find_example_words_in_section(text)
-            for sp in spelling_patterns:
-                if not sp["examples"] and extra_examples:
-                    sp["examples"] = extra_examples
 
         results.append(EmailData(
             date=date,
@@ -365,6 +370,9 @@ def _extract_story_words(pdf_path: Path) -> set[str]:
             "illustrated by", "corinn kintz", "amy bauman",
             "amy helfer", "lucy bledsoe", "erica j",
             "rob arego", "margaret goldberg",
+            "emeryville", "suite 100", "interior design",
+            "design by", "printed in", "edition",
+            "cataloging", "library of congress",
         ]):
             continue
         # Skip standalone numbers (page numbers)
@@ -377,6 +385,9 @@ def _extract_story_words(pdf_path: Path) -> set[str]:
 
     story_text = " ".join(story_lines)
 
+    # Normalize curly apostrophes
+    story_text = story_text.replace("\u2019", "'").replace("\u2018", "'")
+
     # Tokenize: extract words, lowercase, remove punctuation
     words = re.findall(r"[a-zA-Z']+", story_text)
     # Normalize: lowercase, strip leading/trailing apostrophes
@@ -385,7 +396,7 @@ def _extract_story_words(pdf_path: Path) -> set[str]:
         w = w.lower().strip("'")
         if len(w) >= 2 and w.isalpha():
             unique_words.add(w)
-        elif "'" in w:
+        elif "'" in w and len(w) >= 2:
             # Keep contractions like "don't"
             unique_words.add(w.lower())
 
@@ -509,7 +520,15 @@ def _generate_breakdown(word: str, pattern: str) -> list[str] | None:
         suffix = word_lower[idx + len(pattern):]
 
         if prefix:
-            breakdown.append(prefix)
+            # Split long prefixes at syllable boundary before the pattern
+            # e.g., "subw" → "sub" + "w", "tod" → "to" + "d"
+            if (len(prefix) > 2
+                    and any(c in "aeiou" for c in prefix)
+                    and prefix[-1] not in "aeiou"):
+                breakdown.append(prefix[:-1])
+                breakdown.append(prefix[-1])
+            else:
+                breakdown.append(prefix)
         breakdown.append(pattern)
         if suffix:
             breakdown.append(suffix)
@@ -535,6 +554,15 @@ EXCLUDE_WORDS = {
     "when", "your", "come", "made", "here", "about", "could", "their",
     "there", "these", "would", "other", "which",
     "were", "where", "also", "very", "does", "says",
+    # Boilerplate / publisher / credits words
+    "emeryville", "suite", "author", "illustrator", "interior",
+    "collaborative", "classroom", "publishing", "permission", "reserved",
+    # Proper nouns (character/author names)
+    "morris", "roberta", "vern", "pete", "sophie",
+    "corinn", "kintz", "bauman", "helfer", "bledsoe", "arego", "goldberg",
+    # Phonetic false positives
+    "bear",  # 'ar' substring but /ɛr/ not /ɑr/
+    "toward",  # 'ar' substring but /wɔrd/ not /ɑr/
 }
 
 

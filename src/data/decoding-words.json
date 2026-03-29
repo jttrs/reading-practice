@@ -69,7 +69,8 @@
       ],
       "phoneme": "/u/",
       "examples": [
-        "cube"
+        "cube",
+        "flute"
       ],
       "sourceEmail": "2025-11-14",
       "book": "Life in a Plains Tribe Part 1"
@@ -81,7 +82,10 @@
         "ee"
       ],
       "phoneme": "/e/",
-      "examples": [],
+      "examples": [
+        "eat",
+        "tree"
+      ],
       "sourceEmail": "2025-12-18",
       "book": "What Little Deer Eat"
     },
@@ -93,7 +97,11 @@
         "ur"
       ],
       "phoneme": "/ur/",
-      "examples": [],
+      "examples": [
+        "fern",
+        "bird",
+        "turn"
+      ],
       "sourceEmail": "2026-01-08",
       "book": "Bird School"
     },
@@ -104,8 +112,7 @@
       ],
       "phoneme": "/ar/",
       "examples": [
-        "car",
-        "fork"
+        "car"
       ],
       "sourceEmail": "2026-01-30",
       "book": "Fox Spills the Stars"
@@ -117,7 +124,6 @@
       ],
       "phoneme": "/or/",
       "examples": [
-        "car",
         "fork"
       ],
       "sourceEmail": "2026-01-30",
@@ -142,7 +148,9 @@
         "all"
       ],
       "phoneme": "/awl/",
-      "examples": [],
+      "examples": [
+        "tall"
+      ],
       "sourceEmail": "2026-03-27",
       "book": "Ball Games"
     }
@@ -256,7 +264,8 @@
       "word": "subway",
       "spellingUnitId": "ai_ay",
       "decodingBreakdown": [
-        "subw",
+        "sub",
+        "w",
         "ay"
       ],
       "book": "A Play Day with My Brother Ray"
@@ -265,7 +274,8 @@
       "word": "today",
       "spellingUnitId": "ai_ay",
       "decodingBreakdown": [
-        "tod",
+        "to",
+        "d",
         "ay"
       ],
       "book": "A Play Day with My Brother Ray"
@@ -410,16 +420,6 @@
       "book": "A Hike by the Lake"
     },
     {
-      "word": "emeryville",
-      "spellingUnitId": "ie",
-      "decodingBreakdown": [
-        "emeryv",
-        "i_e",
-        "ll"
-      ],
-      "book": "A Hike by the Lake"
-    },
-    {
       "word": "five",
       "spellingUnitId": "ie",
       "decodingBreakdown": [
@@ -476,16 +476,6 @@
         "sm",
         "i_e",
         "l"
-      ],
-      "book": "A Hike by the Lake"
-    },
-    {
-      "word": "suite",
-      "spellingUnitId": "ie",
-      "decodingBreakdown": [
-        "su",
-        "i_e",
-        "t"
       ],
       "book": "A Hike by the Lake"
     },
@@ -728,16 +718,6 @@
       "book": "Bird School"
     },
     {
-      "word": "roberta",
-      "spellingUnitId": "er_ir_ur",
-      "decodingBreakdown": [
-        "rob",
-        "er",
-        "ta"
-      ],
-      "book": "Bird School"
-    },
-    {
       "word": "third",
       "spellingUnitId": "er_ir_ur",
       "decodingBreakdown": [
@@ -758,30 +738,11 @@
       "book": "Bird School"
     },
     {
-      "word": "vern",
-      "spellingUnitId": "er_ir_ur",
-      "decodingBreakdown": [
-        "v",
-        "er",
-        "n"
-      ],
-      "book": "Bird School"
-    },
-    {
       "word": "art",
       "spellingUnitId": "ar",
       "decodingBreakdown": [
         "ar",
         "t"
-      ],
-      "book": "Fox Spills the Stars"
-    },
-    {
-      "word": "bear",
-      "spellingUnitId": "ar",
-      "decodingBreakdown": [
-        "be",
-        "ar"
       ],
       "book": "Fox Spills the Stars"
     },
@@ -874,25 +835,6 @@
       "book": "Fox Spills the Stars"
     },
     {
-      "word": "toward",
-      "spellingUnitId": "ar",
-      "decodingBreakdown": [
-        "tow",
-        "ar",
-        "d"
-      ],
-      "book": "Fox Spills the Stars"
-    },
-    {
-      "word": "author",
-      "spellingUnitId": "or",
-      "decodingBreakdown": [
-        "auth",
-        "or"
-      ],
-      "book": "Fox Spills the Stars"
-    },
-    {
       "word": "cork",
       "spellingUnitId": "or",
       "decodingBreakdown": [
@@ -923,40 +865,12 @@
       "book": "Fox Spills the Stars"
     },
     {
-      "word": "illustrator",
-      "spellingUnitId": "or",
-      "decodingBreakdown": [
-        "illustrat",
-        "or"
-      ],
-      "book": "Fox Spills the Stars"
-    },
-    {
-      "word": "interior",
-      "spellingUnitId": "or",
-      "decodingBreakdown": [
-        "interi",
-        "or"
-      ],
-      "book": "Fox Spills the Stars"
-    },
-    {
       "word": "more",
       "spellingUnitId": "or",
       "decodingBreakdown": [
         "m",
         "or",
         "e"
-      ],
-      "book": "Fox Spills the Stars"
-    },
-    {
-      "word": "morris",
-      "spellingUnitId": "or",
-      "decodingBreakdown": [
-        "m",
-        "or",
-        "ris"
       ],
       "book": "Fox Spills the Stars"
     },
@@ -976,16 +890,6 @@
       "decodingBreakdown": [
         "bl",
         "ow"
-      ],
-      "book": "Cook Food on a Campfire"
-    },
-    {
-      "word": "book",
-      "spellingUnitId": "ew_oa_oo_ow",
-      "decodingBreakdown": [
-        "b",
-        "oo",
-        "k"
       ],
       "book": "Cook Food on a Campfire"
     },
@@ -1139,7 +1043,8 @@
       "word": "marshmallows",
       "spellingUnitId": "ew_oa_oo_ow",
       "decodingBreakdown": [
-        "marshmall",
+        "marshmal",
+        "l",
         "ow",
         "s"
       ],
@@ -1266,7 +1171,8 @@
       "word": "baseball",
       "spellingUnitId": "all",
       "decodingBreakdown": [
-        "baseb",
+        "base",
+        "b",
         "all"
       ],
       "book": "Ball Games"
@@ -1275,7 +1181,8 @@
       "word": "basketball",
       "spellingUnitId": "all",
       "decodingBreakdown": [
-        "basketb",
+        "basket",
+        "b",
         "all"
       ],
       "book": "Ball Games"
@@ -1294,7 +1201,8 @@
       "word": "dodgeball",
       "spellingUnitId": "all",
       "decodingBreakdown": [
-        "dodgeb",
+        "dodge",
+        "b",
         "all"
       ],
       "book": "Ball Games"
@@ -1303,7 +1211,8 @@
       "word": "kickball",
       "spellingUnitId": "all",
       "decodingBreakdown": [
-        "kickb",
+        "kick",
+        "b",
         "all"
       ],
       "book": "Ball Games"
@@ -1394,6 +1303,16 @@
       "book": "Out My Window"
     },
     {
+      "word": "don't",
+      "sourceEmail": "2025-12-18",
+      "book": "What Little Deer Eat"
+    },
+    {
+      "word": "won't",
+      "sourceEmail": "2025-12-18",
+      "book": "What Little Deer Eat"
+    },
+    {
       "word": "too",
       "sourceEmail": "2025-12-18",
       "book": "What Little Deer Eat"
@@ -1407,6 +1326,16 @@
       "word": "school",
       "sourceEmail": "2026-01-08",
       "book": "Bird School"
+    },
+    {
+      "word": "thought",
+      "sourceEmail": "2026-01-30",
+      "book": "Fox Spills the Stars"
+    },
+    {
+      "word": "father",
+      "sourceEmail": "2026-01-30",
+      "book": "Fox Spills the Stars"
     },
     {
       "word": "even",
