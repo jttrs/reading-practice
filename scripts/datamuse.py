@@ -138,8 +138,18 @@ def map_breakdown_to_audio(breakdown: list[str], arpabet: list[str], word: str) 
             audio_ids.append("")
             continue
 
-        # --- Standard 1:1 mapping ---
+        # --- Pedagogical override for R-modified vowels ---
+        # CMU uses different phonemes before R (e.g. IH+R for "deer", AO+R
+        # for "roar"), but for teaching, the vowel grapheme should sound like
+        # its normal long-vowel sound, not the R-colored variant.
         phoneme = arpabet[a_idx]
+        override = _R_VOWEL_OVERRIDES.get(grapheme)
+        if override and phoneme in override and a_idx + 1 < len(arpabet) and arpabet[a_idx + 1] == "R":
+            audio_ids.append(override[phoneme])
+            a_idx += 1
+            continue
+
+        # --- Standard 1:1 mapping ---
         entry = ARPABET_TO_AUDIO.get(phoneme)
         if entry is None:
             raise ValueError(
@@ -162,6 +172,16 @@ def map_breakdown_to_audio(breakdown: list[str], arpabet: list[str], word: str) 
 _ARPABET_CONSONANTS = {
     "B", "CH", "D", "DH", "F", "G", "HH", "JH", "K", "L", "M", "N",
     "NG", "P", "R", "S", "SH", "T", "TH", "V", "W", "Y", "Z", "ZH",
+}
+
+# Pedagogical overrides for R-modified vowels.
+# CMU uses different phonemes before R (IH for NEAR, AO for FORCE), but
+# the vowel grapheme should play its normal long-vowel sound when sounding out.
+# Format: grapheme → {arpabet_phoneme: audio_id_to_use_instead}
+_R_VOWEL_OVERRIDES: dict[str, dict[str, str]] = {
+    "ee": {"IH": "ee"},   # "deer": IH+R but 'ee' should sound like /iː/
+    "ea": {"IH": "ee"},   # "dear", "clear": same
+    "oa": {"AO": "oh"},   # "roar": AO+R but 'oa' should sound like /oʊ/
 }
 
 # Graphemes that consume multiple ARPAbet phonemes.
