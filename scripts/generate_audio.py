@@ -1,10 +1,12 @@
 """
 Generate TTS audio files using Google Cloud Text-to-Speech API.
 
-Reads src/data/decoding-words.json to collect all unique TTS values,
-then generates MP3 audio files for:
-- Phoneme sounds (breakdown elements) using SSML <phoneme> tags with IPA
+Generates MP3 audio files for:
+- All phoneme reference sounds (44-phoneme system) using SSML <phoneme> tags with IPA
+- Breakdown elements from word data (suffixes, special sounds)
 - Whole words using plain text
+
+Skips files that already exist unless --force is used.
 
 Output:
   public/audio/phonemes/{tts_value}.mp3
@@ -152,6 +154,11 @@ def main():
     phoneme_values: set[str] = set()
     word_values: set[str] = set()
 
+    # Include all phoneme reference sounds (the 44-phoneme system)
+    for p in PHONEMES:
+        phoneme_values.add(p["tts"])
+
+    # Include TTS values from word breakdowns (may add suffix/special sounds)
     for w in data["decodingWords"]:
         for t in w["ttsBreakdown"]:
             phoneme_values.add(t)
