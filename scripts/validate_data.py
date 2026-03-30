@@ -7,10 +7,11 @@ Checks:
 3. Word-phoneme classification — each word contains its assigned grapheme
 4. TTS completeness — ttsBreakdown length matches decodingBreakdown
 5. TTS values — no raw split-digraph notation (a_e) or empty strings
-6. No duplicates — across decodingWords and sightWords
-7. No excluded words leaking through
-8. Phoneme reference — every phoneme has tts and ipa
-9. Sight word TTS — every sight word has ttsWord
+6. TTS manifest — every ttsBreakdown value is a known audio ID
+7. No duplicates — across decodingWords and sightWords
+8. No excluded words leaking through
+9. Phoneme reference — every phoneme has tts and ipa
+10. Sight word TTS — every sight word has ttsWord
 
 Usage:
     uv run python scripts/validate_data.py
@@ -21,7 +22,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from phoneme_data import PHONEMES, DIGRAPHS, CONSONANT_TTS, VOWEL_GRAPHEMES, VOICELESS_SOUNDS, TD_SOUNDS
+from phoneme_data import PHONEMES, DIGRAPHS, CONSONANT_TTS, VOWEL_GRAPHEMES, VOICELESS_SOUNDS, TD_SOUNDS, VALID_AUDIO_IDS
 
 DATA_PATH = Path("src/data/decoding-words.json")
 
@@ -163,19 +164,29 @@ def validate_tts_completeness(data: dict) -> list[ValidationError]:
 
 
 def validate_tts_values(data: dict) -> list[ValidationError]:
-    """TTS values must not contain raw split-digraph notation or empty strings."""
+    """TTS values must not contain raw split-digraph notation.
+    Empty strings are allowed (silent letters)."""
     errors = []
     for w in data["decodingWords"]:
         for i, tts_el in enumerate(w["ttsBreakdown"]):
-            if not tts_el:
-                errors.append(ValidationError(
-                    "tts_values",
-                    f"'{w['word']}': empty ttsBreakdown element at index {i}"
-                ))
             if "_" in tts_el:
                 errors.append(ValidationError(
                     "tts_values",
                     f"'{w['word']}': ttsBreakdown contains raw split-digraph '{tts_el}' at index {i}"
+                ))
+    return errors
+
+
+def validate_tts_manifest(data: dict) -> list[ValidationError]:
+    """Every ttsBreakdown value must be a known audio ID from the manifest."""
+    errors = []
+    for w in data["decodingWords"]:
+        for i, tts_el in enumerate(w["ttsBreakdown"]):
+            if tts_el and tts_el not in VALID_AUDIO_IDS:
+                errors.append(ValidationError(
+                    "tts_manifest",
+                    f"'{w['word']}': ttsBreakdown value '{tts_el}' at index {i} "
+                    f"is not a known audio ID"
                 ))
     return errors
 
@@ -279,7 +290,8 @@ def validate_audio_files(data: dict) -> list[ValidationError]:
     phoneme_values: set[str] = set()
     for w in data["decodingWords"]:
         for t in w["ttsBreakdown"]:
-            phoneme_values.add(t)
+            if t:  # skip empty strings (silent letters)
+                phoneme_values.add(t)
 
     for val in sorted(phoneme_values):
         filename = val.replace("/", "_")
@@ -318,6 +330,7 @@ def main():
         ("Word-phoneme classification", validate_word_phoneme_classification),
         ("TTS completeness", validate_tts_completeness),
         ("TTS values", validate_tts_values),
+        ("TTS manifest", validate_tts_manifest),
         ("No duplicates", validate_no_duplicates),
         ("No excluded words", validate_no_excluded_words),
         ("Sight word TTS", validate_sight_word_tts),

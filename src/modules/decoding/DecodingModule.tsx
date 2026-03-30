@@ -46,7 +46,7 @@ export default function DecodingModule() {
 
     if (currentWord && tts.enabled) {
       // Speak breakdown elements then full word
-      const parts = [...currentWord.ttsBreakdown, currentWord.ttsWord]
+      const parts = [...currentWord.ttsBreakdown.filter(Boolean), currentWord.ttsWord]
       tts.speakSequence(parts)
     }
   }, [phase, session, currentWord, tts])
@@ -179,19 +179,31 @@ export default function DecodingModule() {
         </div>
       )}
 
-      {/* Main content */}
-      <DecodingCard
-        word={currentWord}
-        spellingUnit={spellingUnit}
-        isRevealed={session.isRevealed}
-      />
+      {/* Main content — hide during cooldown for clean transition */}
+      {phase !== 'cooldown' && (
+        <DecodingCard
+          word={currentWord}
+          spellingUnit={spellingUnit}
+          isRevealed={session.isRevealed}
+        />
+      )}
+
+      {/* Feedback message — shown during cooldown */}
+      {phase === 'cooldown' && lastResult && (
+        <span
+          className={`text-2xl font-bold animate-[fade-in-up_0.3s_ease-out] ${
+            lastResult === 'correct' ? 'text-green-600' : 'text-red-500'
+          }`}
+        >
+          {lastResult === 'correct' ? 'Nice!' : 'Keep trying!'}
+        </span>
+      )}
 
       {/* Feedback buttons — only when revealed */}
-      {(phase === 'revealed' || (phase === 'cooldown' && lastResult)) && (
+      {phase === 'revealed' && (
         <FeedbackButtons
           onCorrect={() => handleFeedback(true)}
           onIncorrect={() => handleFeedback(false)}
-          lastResult={phase === 'cooldown' ? lastResult : null}
         />
       )}
 

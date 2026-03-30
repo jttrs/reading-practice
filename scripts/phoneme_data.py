@@ -691,3 +691,72 @@ def get_suffix_s_tts(preceding_element: str) -> str:
     if preceding_element in VOICELESS_SOUNDS:
         return "sss"
     return "zzz"
+
+
+# ---------------------------------------------------------------------------
+# ARPAbet → audio file manifest
+#
+# Maps each CMU ARPAbet phoneme (stress markers stripped) to:
+#   audio_id — filename stem for the audio file (public/audio/phonemes/{audio_id}.mp3)
+#   ipa      — IPA transcription for Google Cloud TTS SSML generation
+#
+# The audio_id values reuse existing filenames where the sound matches.
+# For consonants that need a brief schwa to sound natural in isolation,
+# the IPA includes a trailing schwa (ə).
+# ---------------------------------------------------------------------------
+
+ARPABET_TO_AUDIO: dict[str, dict[str, str]] = {
+    # --- Stops ---
+    "B":  {"audio_id": "buh",  "ipa": "bə"},
+    "D":  {"audio_id": "duh",  "ipa": "də"},
+    "G":  {"audio_id": "guh",  "ipa": "gə"},
+    "K":  {"audio_id": "kuh",  "ipa": "kə"},
+    "P":  {"audio_id": "puh",  "ipa": "pə"},
+    "T":  {"audio_id": "tuh",  "ipa": "tə"},
+    # --- Affricates ---
+    "CH": {"audio_id": "chuh", "ipa": "tʃə"},
+    "JH": {"audio_id": "juh",  "ipa": "dʒə"},
+    # --- Fricatives ---
+    "DH": {"audio_id": "thh",  "ipa": "ð"},
+    "F":  {"audio_id": "fff",  "ipa": "f"},
+    "HH": {"audio_id": "huh",  "ipa": "hə"},
+    "S":  {"audio_id": "sss",  "ipa": "s"},
+    "SH": {"audio_id": "shh",  "ipa": "ʃ"},
+    "TH": {"audio_id": "thh",  "ipa": "θ"},
+    "V":  {"audio_id": "vvv",  "ipa": "v"},
+    "Z":  {"audio_id": "zzz",  "ipa": "z"},
+    "ZH": {"audio_id": "zhuh", "ipa": "ʒə"},
+    # --- Nasals ---
+    "M":  {"audio_id": "mmm",  "ipa": "m"},
+    "N":  {"audio_id": "nnn",  "ipa": "n"},
+    "NG": {"audio_id": "ng",   "ipa": "ŋ"},
+    # --- Liquids ---
+    "L":  {"audio_id": "lll",  "ipa": "l"},
+    "R":  {"audio_id": "rrr",  "ipa": "ɹ"},
+    # --- Semivowels / Glides ---
+    "W":  {"audio_id": "wuh",  "ipa": "wə"},
+    "Y":  {"audio_id": "yuh",  "ipa": "jə"},
+    # --- Vowels (monophthongs) ---
+    "AA": {"audio_id": "ah",   "ipa": "ɑ"},     # "odd", "father"
+    "AE": {"audio_id": "aah",  "ipa": "æ"},     # "at", "bat"
+    "AH": {"audio_id": "uh",   "ipa": "ə"},     # "hut" (stressed ʌ) or schwa (unstressed)
+    "AO": {"audio_id": "aw",   "ipa": "ɔ"},     # "ought", "all", "ball"
+    "EH": {"audio_id": "eh",   "ipa": "ɛ"},     # "ed", "red"
+    "ER": {"audio_id": "er",   "ipa": "ɝ"},     # "hurt", "her" (r-colored vowel)
+    "IH": {"audio_id": "ih",   "ipa": "ɪ"},     # "it", "big"
+    "IY": {"audio_id": "ee",   "ipa": "iː"},    # "eat", "bee"
+    "UH": {"audio_id": "ooh",  "ipa": "ʊ"},     # "hood", "book"
+    "UW": {"audio_id": "oo",   "ipa": "uː"},    # "two", "moon"
+    # --- Diphthongs ---
+    "AW": {"audio_id": "ow",   "ipa": "aʊ"},    # "now", "cow"
+    "AY": {"audio_id": "eye",  "ipa": "aɪ"},    # "hide", "my"
+    "EY": {"audio_id": "ay",   "ipa": "eɪ"},    # "ate", "day"
+    "OW": {"audio_id": "oh",   "ipa": "oʊ"},    # "oat", "show"
+    "OY": {"audio_id": "oy",   "ipa": "ɔɪ"},    # "toy", "boy"
+}
+
+# Collect all valid audio IDs from the manifest + multi-phoneme graphemes
+VALID_AUDIO_IDS: set[str] = (
+    {v["audio_id"] for v in ARPABET_TO_AUDIO.values()}
+    | {"ar", "or", "ear", "air", "awl", "id", "ing"}
+)

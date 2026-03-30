@@ -164,29 +164,41 @@ export default function SightWordsModule() {
         </div>
       )}
 
-      {/* Main content */}
-      <div className="flex flex-col items-center">
-        <span className="text-7xl font-bold text-stone-800 sm:text-8xl">
-          {currentWord.word}
+      {/* Main content — hide during cooldown for clean transition */}
+      {phase !== 'cooldown' && (
+        <div className="flex flex-col items-center">
+          <span className="text-7xl font-bold text-stone-800 sm:text-8xl">
+            {currentWord.word}
+          </span>
+          {!session.isRevealed && (
+            <p className="mt-8 text-lg text-stone-400">
+              Read the word, then click or press any key
+            </p>
+          )}
+          {session.isRevealed && (
+            <p className="mt-4 text-sm text-stone-300">
+              from "{currentWord.book}"
+            </p>
+          )}
+        </div>
+      )}
+
+      {/* Feedback message — shown during cooldown */}
+      {phase === 'cooldown' && lastResult && (
+        <span
+          className={`text-2xl font-bold animate-[fade-in-up_0.3s_ease-out] ${
+            lastResult === 'correct' ? 'text-green-600' : 'text-red-500'
+          }`}
+        >
+          {lastResult === 'correct' ? 'Nice!' : 'Keep trying!'}
         </span>
-        {!session.isRevealed && (
-          <p className="mt-8 text-lg text-stone-400">
-            Read the word, then click or press any key
-          </p>
-        )}
-        {session.isRevealed && (
-          <p className="mt-4 text-sm text-stone-300">
-            from "{currentWord.book}"
-          </p>
-        )}
-      </div>
+      )}
 
       {/* Feedback buttons — only when revealed */}
-      {(phase === 'revealed' || (phase === 'cooldown' && lastResult)) && (
+      {phase === 'revealed' && (
         <FeedbackButtons
           onCorrect={() => handleFeedback(true)}
           onIncorrect={() => handleFeedback(false)}
-          lastResult={phase === 'cooldown' ? lastResult : null}
         />
       )}
 

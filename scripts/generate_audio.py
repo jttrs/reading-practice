@@ -32,7 +32,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from google.cloud import texttospeech
-from phoneme_data import PHONEMES, PHONEME_BY_ID
+from phoneme_data import PHONEMES, PHONEME_BY_ID, ARPABET_TO_AUDIO
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -60,56 +60,34 @@ PHONEME_AUDIO_CONFIG = texttospeech.AudioConfig(
 )
 
 # ---------------------------------------------------------------------------
-# TTS value → IPA mapping for phoneme sounds
+# Audio ID → IPA mapping for phoneme sounds
 #
-# Maps the TTS pronunciation strings used in breakdowns to their IPA
-# transcription, so we can use SSML <phoneme> tags for accurate sound.
+# Built from the ARPABET_TO_AUDIO manifest: audio_id → IPA.
+# Multiple ARPAbet phonemes may share an audio_id (e.g., DH and TH → "thh").
 # ---------------------------------------------------------------------------
 
-# Build mapping from phoneme data: tts_value → ipa
-_TTS_TO_IPA: dict[str, str] = {}
-for _p in PHONEMES:
-    tts = _p["tts"]
-    ipa = _p["ipa"].strip("/")  # Remove surrounding slashes
-    if tts not in _TTS_TO_IPA:
-        _TTS_TO_IPA[tts] = ipa
-
-# Additional mappings for suffix and special TTS values
-_TTS_TO_IPA.update({
-    "id": "ɪd",       # -ed suffix after /t/ or /d/
-    "ing": "ɪŋ",      # -ing suffix
-    "nk": "ŋk",       # nk digraph
-    "ng": "ŋ",        # ng digraph
-    "ll": "l",         # doubled l
-})
-
-# Single vowel letters used in multi-syllable word breakdowns
-# These are schwa-like reductions; use short vowel IPA
-_VOWEL_LETTER_IPA: dict[str, str] = {
-    "a": "ə",   # schwa (unstressed vowel in multi-syllable words)
-    "e": "ə",
-    "i": "ɪ",
-    "o": "ɑ",
-    "u": "ʌ",
-}
+_AUDIO_ID_TO_IPA: dict[str, str] = {}
+for _entry in ARPABET_TO_AUDIO.values():
+    aid = _entry["audio_id"]
+    if aid not in _AUDIO_ID_TO_IPA:
+        _AUDIO_ID_TO_IPA[aid] = _entry["ipa"]
 
 
-def _get_phoneme_ssml(tts_value: str) -> str:
-    """Build SSML input for a phoneme TTS value.
+def _get_phoneme_ssml(audio_id: str) -> str:
+    """Build SSML input for a phoneme audio ID.
 
     Uses <phoneme> tag with IPA for accurate isolated sound pronunciation.
     Falls back to plain text if no IPA mapping exists.
     """
-    ipa = _TTS_TO_IPA.get(tts_value) or _VOWEL_LETTER_IPA.get(tts_value)
+    ipa = _AUDIO_ID_TO_IPA.get(audio_id)
     if ipa:
-        # Use a carrier word approach: speak the IPA sound in isolation
         return (
             f'<speak>'
-            f'<phoneme alphabet="ipa" ph="{ipa}">{tts_value}</phoneme>'
+            f'<phoneme alphabet="ipa" ph="{ipa}">{audio_id}</phoneme>'
             f'</speak>'
         )
     # Fallback: just speak the text as-is
-    return f"<speak>{tts_value}</speak>"
+    return f"<speak>{audio_id}</speak>"
 
 
 def _get_word_ssml(word: str) -> str:
@@ -154,14 +132,15 @@ def main():
     phoneme_values: set[str] = set()
     word_values: set[str] = set()
 
-    # Include all phoneme reference sounds (the 44-phoneme system)
-    for p in PHONEMES:
-        phoneme_values.add(p["tts"])
+    # Include all audio IDs from the ARPAbet manifest
+    for entry in ARPABET_TO_AUDIO.values():
+        phoneme_values.add(entry["audio_id"])
 
-    # Include TTS values from word breakdowns (may add suffix/special sounds)
+    # Include TTS values from word breakdowns (should all be in manifest)
     for w in data["decodingWords"]:
         for t in w["ttsBreakdown"]:
-            phoneme_values.add(t)
+            if t:  # skip empty strings (silent letters)
+                phoneme_values.add(t)
         word_values.add(w["ttsWord"])
 
     for w in data["sightWords"]:

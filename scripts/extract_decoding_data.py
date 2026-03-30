@@ -22,6 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import fitz  # PyMuPDF
 from phoneme_data import DIGRAPHS, get_element_tts
+from datamuse import get_word_phonemes, map_breakdown_to_audio, prefetch_all
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -555,17 +556,25 @@ def _make_unit_id(patterns: list[str]) -> str:
 
 def _generate_tts_breakdown(
     breakdown: list[str], patterns: list[str], word: str,
+    datamuse_cache: dict[str, list[str]] | None = None,
 ) -> list[str]:
     """Generate TTS pronunciation for each element in a breakdown.
 
-    Passes the preceding element to get_element_tts so that suffix
-    elements like 'ed' and 's' can determine voicing-based pronunciation.
+    Uses Datamuse API (CMU Pronouncing Dictionary) to get real ARPAbet
+    phonemes for the word, then maps each phoneme through the ARPAbet
+    manifest to an audio file ID.
     """
-    result = []
-    for i, el in enumerate(breakdown):
-        preceding = breakdown[i - 1] if i > 0 else None
-        result.append(get_element_tts(el, patterns, word, preceding))
-    return result
+    try:
+        arpabet = get_word_phonemes(word, cache=datamuse_cache)
+        return map_breakdown_to_audio(breakdown, arpabet, word)
+    except ValueError as e:
+        print(f"  WARNING: Datamuse fallback for {word!r}: {e}")
+        # Fall back to old method if Datamuse fails
+        result = []
+        for i, el in enumerate(breakdown):
+            preceding = breakdown[i - 1] if i > 0 else None
+            result.append(get_element_tts(el, patterns, word, preceding))
+        return result
 
 
 # Common words to exclude from decoding practice (too simple / not decodable)
@@ -596,6 +605,7 @@ EXCLUDE_WORDS = {
 def cross_reference(
     emails: list[EmailData],
     books: dict[str, set[str]],
+    datamuse_cache: dict[str, list[str]] | None = None,
 ) -> tuple[list[SpellingUnit], list[DecodingWord], list[SightWord]]:
     """Cross-reference emails and books to produce final data."""
     spelling_units: list[SpellingUnit] = []
@@ -643,6 +653,7 @@ def cross_reference(
                         if breakdown:
                             tts_bd = _generate_tts_breakdown(
                                 breakdown, sp["patterns"], word,
+                                datamuse_cache=datamuse_cache,
                             )
                             decoding_words.append(DecodingWord(
                                 word=word,
@@ -696,7 +707,20 @@ def main():
 
     # Cross-reference
     print("  Cross-referencing...")
-    spelling_units, decoding_words, sight_words = cross_reference(emails, books)
+
+    # Prefetch phonemes from Datamuse for all candidate words
+    all_candidate_words: list[str] = []
+    for email in emails:
+        for book_title in email.book_titles:
+            for bt, bw in books.items():
+                if _normalize_title(bt) == _normalize_title(book_title):
+                    all_candidate_words.extend(sorted(bw))
+    # Also include sight words (they need whole-word audio but not breakdowns)
+    datamuse_cache = prefetch_all(list(set(all_candidate_words)))
+
+    spelling_units, decoding_words, sight_words = cross_reference(
+        emails, books, datamuse_cache=datamuse_cache,
+    )
     print(f"    {len(spelling_units)} spelling units")
     print(f"    {len(decoding_words)} decoding words")
     print(f"    {len(sight_words)} sight words")

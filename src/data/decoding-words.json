@@ -740,7 +740,7 @@
         "ay"
       ],
       "ttsBreakdown": [
-        "a",
+        "uh",
         "wuh",
         "ay"
       ],
@@ -921,7 +921,7 @@
       ],
       "ttsBreakdown": [
         "sss",
-        "u",
+        "uh",
         "buh",
         "wuh",
         "ay"
@@ -940,7 +940,7 @@
       ],
       "ttsBreakdown": [
         "tuh",
-        "o",
+        "uh",
         "duh",
         "ay"
       ],
@@ -1300,7 +1300,7 @@
         "l"
       ],
       "ttsBreakdown": [
-        "whuh",
+        "wuh",
         "eye",
         "lll"
       ],
@@ -1354,7 +1354,7 @@
       ],
       "ttsBreakdown": [
         "chuh",
-        "ee",
+        "ih",
         "rrr",
         "zzz"
       ],
@@ -1373,7 +1373,7 @@
       "ttsBreakdown": [
         "kuh",
         "lll",
-        "ee",
+        "ih",
         "rrr"
       ],
       "ttsWord": "clear",
@@ -1389,7 +1389,7 @@
       ],
       "ttsBreakdown": [
         "duh",
-        "ee",
+        "ih",
         "rrr"
       ],
       "ttsWord": "dear",
@@ -1405,7 +1405,7 @@
       ],
       "ttsBreakdown": [
         "duh",
-        "ee",
+        "ih",
         "rrr"
       ],
       "ttsWord": "deer",
@@ -1946,7 +1946,7 @@
       "ttsBreakdown": [
         "mmm",
         "or",
-        "e"
+        ""
       ],
       "ttsWord": "more",
       "book": "Fox Spills the Stars"
@@ -2045,7 +2045,7 @@
       ],
       "ttsBreakdown": [
         "kuh",
-        "uh",
+        "ooh",
         "kuh"
       ],
       "ttsWord": "cook",
@@ -2062,7 +2062,7 @@
       ],
       "ttsBreakdown": [
         "kuh",
-        "oo",
+        "ooh",
         "kuh",
         "tuh"
       ],
@@ -2080,7 +2080,7 @@
       ],
       "ttsBreakdown": [
         "kuh",
-        "oo",
+        "ooh",
         "kuh",
         "ing"
       ],
@@ -2195,7 +2195,7 @@
       ],
       "ttsBreakdown": [
         "guh",
-        "uh",
+        "ooh",
         "duh"
       ],
       "ttsWord": "good",
@@ -2249,12 +2249,12 @@
       ],
       "ttsBreakdown": [
         "mmm",
-        "a",
+        "ah",
         "rrr",
         "shh",
         "mmm",
-        "a",
-        "ll",
+        "eh",
+        "lll",
         "oh",
         "zzz"
       ],
@@ -2272,7 +2272,7 @@
       "ttsBreakdown": [
         "oo",
         "zzz",
-        "e"
+        ""
       ],
       "ttsWord": "ooze",
       "book": "Cook Food on a Campfire"
@@ -2287,7 +2287,7 @@
       ],
       "ttsBreakdown": [
         "rrr",
-        "oh",
+        "aw",
         "rrr"
       ],
       "ttsWord": "roar",
@@ -2429,7 +2429,7 @@
       ],
       "ttsBreakdown": [
         "wuh",
-        "uh",
+        "ooh",
         "duh"
       ],
       "ttsWord": "wood",
@@ -2464,7 +2464,7 @@
         "buh",
         "awl",
         "puh",
-        "a",
+        "ah",
         "rrr",
         "kuh"
       ],
@@ -2484,9 +2484,9 @@
       ],
       "ttsBreakdown": [
         "buh",
-        "a",
+        "ay",
         "sss",
-        "e",
+        "",
         "buh",
         "awl"
       ],
@@ -2508,10 +2508,10 @@
       ],
       "ttsBreakdown": [
         "buh",
-        "a",
+        "aah",
         "sss",
         "kuh",
-        "e",
+        "uh",
         "tuh",
         "buh",
         "awl"
@@ -2548,9 +2548,9 @@
       ],
       "ttsBreakdown": [
         "duh",
-        "o",
+        "ah",
         "juh",
-        "e",
+        "",
         "buh",
         "awl"
       ],
@@ -2569,7 +2569,7 @@
       ],
       "ttsBreakdown": [
         "kuh",
-        "i",
+        "ih",
         "kuh",
         "buh",
         "awl"
