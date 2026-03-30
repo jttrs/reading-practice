@@ -12,11 +12,13 @@ const COOLDOWN_MS = 2000
 const data = decodingData as DecodingData
 
 type Phase = 'showing' | 'revealed' | 'cooldown'
+type FeedbackResult = 'correct' | 'incorrect' | null
 
 export default function SightWordsModule() {
   const navigate = useNavigate()
   const [phase, setPhase] = useState<Phase>('showing')
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [lastResult, setLastResult] = useState<FeedbackResult>(null)
 
   const sightWords: SightWord[] = useMemo(() => data.sightWords, [])
 
@@ -43,6 +45,7 @@ export default function SightWordsModule() {
   const handleFeedback = useCallback((correct: boolean) => {
     if (phase !== 'revealed' || !currentWord) return
     tts.stop()
+    setLastResult(correct ? 'correct' : 'incorrect')
     session.next({ elementId: `sw:${currentWord.word}`, correct })
     setPhase('cooldown')
   }, [phase, currentWord, session, tts])
@@ -56,6 +59,7 @@ export default function SightWordsModule() {
 
   const handleCooldownComplete = useCallback(() => {
     setPhase('showing')
+    setLastResult(null)
   }, [])
 
   // Global key/click handler
@@ -85,7 +89,7 @@ export default function SightWordsModule() {
   if (!currentWord) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <p className="text-xl text-gray-500">No words available. Check your settings.</p>
+        <p className="text-xl text-stone-500">No words available. Check your settings.</p>
       </div>
     )
   }
@@ -93,19 +97,19 @@ export default function SightWordsModule() {
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-amber-50 to-white select-none">
       {/* Header */}
-      <div className="fixed top-0 left-0 right-0 flex items-center justify-between px-4 py-3">
+      <div className="fixed top-0 left-0 right-0 flex items-center justify-between px-4 py-4">
         <button
           onClick={() => navigate('/')}
-          className="rounded-lg px-3 py-1 text-sm text-gray-500 hover:bg-gray-100"
+          className="rounded-lg px-3 py-1 text-sm text-stone-500 hover:bg-stone-100"
         >
           ← Back
         </button>
-        <span className="text-sm text-gray-400">
+        <span className="text-sm text-stone-400">
           {session.progress.current} / {session.progress.total}
         </span>
         <button
           onClick={() => setSettingsOpen(!settingsOpen)}
-          className="rounded-lg px-3 py-1 text-sm text-gray-500 hover:bg-gray-100"
+          className="rounded-lg px-3 py-1 text-sm text-stone-500 hover:bg-stone-100"
         >
           ⚙️
         </button>
@@ -114,10 +118,10 @@ export default function SightWordsModule() {
       {/* Settings drawer */}
       {settingsOpen && (
         <div className="fixed top-12 right-4 z-50 w-72 rounded-xl border bg-white p-4 shadow-lg">
-          <h3 className="mb-3 font-bold text-gray-700">Settings</h3>
+          <h3 className="mb-3 font-bold text-stone-700">Settings</h3>
 
           {tts.available && (
-            <label className="mb-4 flex items-center gap-2 text-sm text-gray-600">
+            <label className="mb-4 flex items-center gap-2 text-sm text-stone-600">
               <input
                 type="checkbox"
                 checked={tts.enabled}
@@ -128,14 +132,14 @@ export default function SightWordsModule() {
             </label>
           )}
 
-          <h4 className="mb-2 text-xs font-semibold uppercase text-gray-400">Sight Words</h4>
+          <h4 className="mb-2 text-xs font-semibold uppercase text-stone-400">Sight Words</h4>
           <div className="max-h-64 overflow-y-auto">
             {session.uniqueElements.map((id) => {
               const wordName = id.replace('sw:', '')
               const freq = session.frequencies[id] ?? 'normal'
               return (
                 <div key={id} className="mb-2 flex items-center justify-between text-sm">
-                  <span className="text-gray-600">{wordName}</span>
+                  <span className="text-stone-600">{wordName}</span>
                   <select
                     value={freq}
                     onChange={(e) => session.setFrequency(id, e.target.value as Frequency)}
@@ -153,7 +157,7 @@ export default function SightWordsModule() {
 
           <button
             onClick={() => setSettingsOpen(false)}
-            className="mt-3 w-full rounded-lg bg-gray-100 py-1 text-sm text-gray-600 hover:bg-gray-200"
+            className="mt-3 w-full rounded-lg bg-stone-100 py-1 text-sm text-stone-600 hover:bg-stone-200"
           >
             Close
           </button>
@@ -162,26 +166,27 @@ export default function SightWordsModule() {
 
       {/* Main content */}
       <div className="flex flex-col items-center">
-        <span className="text-7xl font-bold text-gray-800 sm:text-8xl">
+        <span className="text-7xl font-bold text-stone-800 sm:text-8xl">
           {currentWord.word}
         </span>
         {!session.isRevealed && (
-          <p className="mt-6 text-lg text-gray-400">
+          <p className="mt-8 text-lg text-stone-400">
             Read the word, then click or press any key
           </p>
         )}
         {session.isRevealed && (
-          <p className="mt-4 text-sm text-gray-300">
+          <p className="mt-4 text-sm text-stone-300">
             from "{currentWord.book}"
           </p>
         )}
       </div>
 
       {/* Feedback buttons — only when revealed */}
-      {phase === 'revealed' && (
+      {(phase === 'revealed' || (phase === 'cooldown' && lastResult)) && (
         <FeedbackButtons
           onCorrect={() => handleFeedback(true)}
           onIncorrect={() => handleFeedback(false)}
+          lastResult={phase === 'cooldown' ? lastResult : null}
         />
       )}
 

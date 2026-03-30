@@ -52,10 +52,10 @@ export default function DecodingCard({ word, spellingUnit, isRevealed }: Decodin
   if (!isRevealed) {
     return (
       <div className="flex flex-col items-center">
-        <span className="text-7xl font-bold text-gray-800 sm:text-8xl">
+        <span className="text-7xl font-bold text-stone-800 sm:text-8xl">
           {word.word}
         </span>
-        <p className="mt-6 text-lg text-gray-400">
+        <p className="mt-8 text-lg text-stone-400">
           Click or press any key to reveal
         </p>
       </div>
@@ -63,20 +63,20 @@ export default function DecodingCard({ word, spellingUnit, isRevealed }: Decodin
   }
 
   const contextSection = spellingUnit && (
-    <div className="mt-4 text-center text-base text-gray-400">
+    <div className="mt-4 text-center text-base text-stone-400">
       {spellingUnit.phoneme && (
         <p>
           <span className="font-mono">{spellingUnit.patterns.join(', ')}</span>
-          {' → '}
+          {' \u2192 '}
           <span className="font-mono">{spellingUnit.phoneme}</span>
         </p>
       )}
       {spellingUnit.examples.length > 0 && (
-        <p className="mt-1">
+        <p className="mt-2">
           Examples: {spellingUnit.examples.join(', ')}
         </p>
       )}
-      <p className="mt-1 text-sm text-gray-300">
+      <p className="mt-2 text-sm text-stone-300">
         from "{word.book}"
       </p>
     </div>
@@ -90,19 +90,19 @@ export default function DecodingCard({ word, spellingUnit, isRevealed }: Decodin
       <div className="flex items-end">
         {chars.map((ch, i) => (
           <div key={i} className="flex flex-col items-center px-1 sm:px-2">
-            <span className="text-5xl font-bold text-gray-800 sm:text-6xl">
+            <span className="text-5xl font-bold text-stone-800 sm:text-6xl">
               {ch.letter}
             </span>
             <div
               className={`mt-1 h-1 w-full rounded ${
-                ch.isPattern ? 'bg-blue-400' : 'bg-gray-300'
+                ch.isPattern ? 'bg-teal-400' : 'bg-stone-300'
               }`}
             />
           </div>
         ))}
       </div>
 
-      <p className="mt-6 text-3xl font-medium text-gray-600">{word.word}</p>
+      <p className="mt-8 text-3xl font-medium text-stone-600">{word.word}</p>
       {contextSection}
     </div>
   )

@@ -38,14 +38,14 @@ test.describe('Decoding module', () => {
   test('breakdown has color-coded underlines', async ({ page }) => {
     await page.click('.select-none')
 
-    // Should have both blue (pattern) and gray (non-pattern) underlines
-    const blueUnderlines = page.locator('.bg-blue-400')
-    const grayUnderlines = page.locator('.bg-gray-300')
+    // Should have both teal (pattern) and stone (non-pattern) underlines
+    const tealUnderlines = page.locator('.bg-teal-400')
+    const stoneUnderlines = page.locator('.bg-stone-300')
 
     // At least one of each type should exist
-    const blueCount = await blueUnderlines.count()
-    const grayCount = await grayUnderlines.count()
-    expect(blueCount + grayCount).toBeGreaterThanOrEqual(2)
+    const tealCount = await tealUnderlines.count()
+    const stoneCount = await stoneUnderlines.count()
+    expect(tealCount + stoneCount).toBeGreaterThanOrEqual(2)
   })
 
   test('feedback buttons appear on reveal', async ({ page }) => {
@@ -110,7 +110,7 @@ test.describe('Decoding module', () => {
     await page.click('.select-none')
 
     // Should show pattern info (like "ai, ay → /a/")
-    const infoSection = page.locator('.text-gray-400')
+    const infoSection = page.locator('.text-stone-400')
     await expect(infoSection.first()).toBeVisible()
 
     // Should show "from" book attribution

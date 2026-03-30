@@ -50,7 +50,7 @@ export default function CooldownIndicator({ active, durationMs, onComplete }: Co
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="#d1d5db"
+          stroke="#d6d3d1"
           strokeWidth={strokeWidth}
         />
         <circle
@@ -58,7 +58,7 @@ export default function CooldownIndicator({ active, durationMs, onComplete }: Co
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="#6b7280"
+          stroke="#78716c"
           strokeWidth={strokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset={dashoffset}
