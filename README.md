@@ -26,16 +26,30 @@ The app loads pre-extracted word data from `src/data/decoding-words.json` (git-t
 
 ## Regenerating Word Data
 
-If you add new PDFs to `materials/`, regenerate the JSON:
+If you add new PDFs to `materials/`, regenerate the data and audio:
 
 ```bash
-# Extract words from PDFs into JSON
+# Extract words from PDFs into JSON (uses Datamuse API for phoneme lookup)
 npm run extract
+
+# Generate TTS audio files (requires Google Cloud credentials)
+npm run generate-audio
+
+# Run 12 validation checks on the generated data
+npm run validate
 ```
 
-This runs `uv run python scripts/extract_decoding_data.py` which reads the PDFs in `materials/decoding/` and outputs `src/data/decoding-words.json`.
+See [scripts/README.md](scripts/README.md) for details on each script.
 
-See [scripts/README.md](scripts/README.md) for details on the extraction pipeline.
+## Testing
+
+```bash
+# Run everything: validate data + build + Playwright e2e tests
+npm test
+
+# Run only e2e tests
+npm run test:e2e
+```
 
 ## Build & Deploy
 
@@ -54,16 +68,18 @@ The `dist/` folder can be deployed to any static hosting (GitHub Pages, Netlify,
 ```
 reading-practice/
 ├── materials/          # Source PDFs (teacher emails + books)
-├── scripts/            # Python extraction pipeline
+├── public/audio/       # Pre-generated TTS audio (phonemes + words)
+├── scripts/            # Python extraction, audio generation, validation
 ├── src/
 │   ├── data/           # Generated JSON data (git-tracked)
 │   ├── components/     # Shared UI components
 │   ├── hooks/          # Shared React hooks (progress, TTS, sessions)
 │   ├── modules/        # Practice modules (decoding, sight-words)
 │   └── pages/          # Top-level pages (landing)
+├── tests/              # Playwright e2e tests
 ├── index.html          # Vite entry
 ├── package.json
-├── pyproject.toml      # Python deps for extraction
+├── pyproject.toml      # Python deps for extraction scripts
 └── vite.config.ts
 ```
 

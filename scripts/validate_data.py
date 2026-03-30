@@ -2,16 +2,18 @@
 Validate the generated decoding-words.json against the phoneme reference.
 
 Checks:
-1. Breakdown integrity — concatenated elements reconstruct the original word
-2. Breakdown granularity — no consonant clusters that should be split
-3. Word-phoneme classification — each word contains its assigned grapheme
-4. TTS completeness — ttsBreakdown length matches decodingBreakdown
-5. TTS values — no raw split-digraph notation (a_e) or empty strings
-6. TTS manifest — every ttsBreakdown value is a known audio ID
-7. No duplicates — across decodingWords and sightWords
-8. No excluded words leaking through
-9. Phoneme reference — every phoneme has tts and ipa
+ 1. Phoneme reference — every phoneme has tts, ipa, and spellings
+ 2. Breakdown integrity — concatenated elements reconstruct the original word
+ 3. Breakdown granularity — no consonant clusters that should be split
+ 4. Word-phoneme classification — each word contains its assigned grapheme
+ 5. TTS completeness — ttsBreakdown length matches decodingBreakdown
+ 6. TTS values — no raw split-digraph notation (a_e)
+ 7. TTS manifest — every ttsBreakdown value is a known audio ID
+ 8. No duplicates — across decodingWords and sightWords
+ 9. No excluded words leaking through
 10. Sight word TTS — every sight word has ttsWord
+11. Suffix pronunciation — context-dependent -ed, -s, -ing rules
+12. Audio files — every ttsBreakdown and ttsWord has a corresponding .mp3
 
 Usage:
     uv run python scripts/validate_data.py
