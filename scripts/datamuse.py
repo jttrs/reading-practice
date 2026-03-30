@@ -149,6 +149,17 @@ def map_breakdown_to_audio(breakdown: list[str], arpabet: list[str], word: str) 
             a_idx += 1
             continue
 
+        # --- Pedagogical override for reduced vowels ---
+        # In unstressed syllables, CMU often reduces vowels to schwa (AH) or
+        # uses a different vowel. For teaching, single vowel letters should
+        # play their expected short-vowel sound so children can connect
+        # the letter to a recognizable sound.
+        letter_override = _LETTER_SOUND_OVERRIDES.get(grapheme)
+        if letter_override and phoneme in letter_override:
+            audio_ids.append(letter_override[phoneme])
+            a_idx += 1
+            continue
+
         # --- Standard 1:1 mapping ---
         entry = ARPABET_TO_AUDIO.get(phoneme)
         if entry is None:
@@ -182,6 +193,17 @@ _R_VOWEL_OVERRIDES: dict[str, dict[str, str]] = {
     "ee": {"IH": "ee"},   # "deer": IH+R but 'ee' should sound like /iː/
     "ea": {"IH": "ee"},   # "dear", "clear": same
     "oa": {"AO": "oh"},   # "roar": AO+R but 'oa' should sound like /oʊ/
+}
+
+# Pedagogical overrides for reduced/shifted single-vowel letters.
+# In unstressed syllables CMU reduces vowels to schwa (AH) or shifts them;
+# for teaching, the letter should play its expected short-vowel sound.
+# Format: grapheme → {arpabet_phoneme: audio_id_to_use_instead}
+_LETTER_SOUND_OVERRIDES: dict[str, dict[str, str]] = {
+    "o": {"AH": "ah"},    # "today": AH but 'o' should sound like short-o /ɒ/
+    "a": {"AH": "aah",    # "away": AH but 'a' should sound like short-a /æ/
+          "EH": "aah"},   # "marshmallows" 2nd 'a': EH but 'a' should be /æ/
+    "e": {"AH": "eh"},    # "basketball": AH but 'e' should sound like short-e /ɛ/
 }
 
 # Graphemes that consume multiple ARPAbet phonemes.
