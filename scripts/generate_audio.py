@@ -73,17 +73,32 @@ for _entry in ARPABET_TO_AUDIO.values():
         _AUDIO_ID_TO_IPA[aid] = _entry["ipa"]
 
 
+# Natural fallback text for audio IDs whose literal text would be
+# misread as letter names (e.g. "sss" → "ess ess ess").
+# These are only used if the TTS engine ignores the <phoneme> tag.
+_FALLBACK_TEXT = {
+    "sss": "suh", "fff": "fuh", "zzz": "zuh", "vvv": "vuh",
+    "shh": "shuh", "thh": "thuh",
+    "mmm": "muh", "nnn": "nuh", "ng": "nguh",
+    "lll": "luh", "rrr": "ruh",
+}
+
+
 def _get_phoneme_ssml(audio_id: str) -> str:
     """Build SSML input for a phoneme audio ID.
 
     Uses <phoneme> tag with IPA for accurate isolated sound pronunciation.
-    Falls back to plain text if no IPA mapping exists.
+    All consonant IPA values include schwa (ə) so the TTS engine can
+    render them as valid syllables rather than ignoring the tag.
     """
     ipa = _AUDIO_ID_TO_IPA.get(audio_id)
     if ipa:
+        # Use natural fallback text instead of audio_id for sounds whose
+        # literal text would be misread as letter names
+        text = _FALLBACK_TEXT.get(audio_id, audio_id)
         return (
             f'<speak>'
-            f'<phoneme alphabet="ipa" ph="{ipa}">{audio_id}</phoneme>'
+            f'<phoneme alphabet="ipa" ph="{ipa}">{text}</phoneme>'
             f'</speak>'
         )
     # Fallback: just speak the text as-is

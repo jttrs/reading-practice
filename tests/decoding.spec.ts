@@ -96,7 +96,7 @@ test.describe('Decoding module', () => {
   })
 
   test('back button navigates to landing', async ({ page }) => {
-    await page.click('text=← Back')
+    await page.click('text=Back')
     await expect(page).toHaveURL(/#\/$|#$/)
   })
 

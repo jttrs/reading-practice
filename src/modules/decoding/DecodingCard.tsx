@@ -102,7 +102,6 @@ export default function DecodingCard({ word, spellingUnit, isRevealed }: Decodin
         ))}
       </div>
 
-      <p className="mt-8 text-3xl font-medium text-stone-600">{word.word}</p>
       {contextSection}
     </div>
   )

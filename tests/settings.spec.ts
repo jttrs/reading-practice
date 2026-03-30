@@ -9,7 +9,7 @@ test.describe('Settings', () => {
 
   test('settings drawer opens and closes', async ({ page }) => {
     // Click settings gear
-    await page.click('text=⚙️')
+    await page.click('[aria-label="Settings"]')
 
     // Settings panel should be visible
     await expect(page.locator('text=Settings')).toBeVisible()
@@ -21,7 +21,7 @@ test.describe('Settings', () => {
   })
 
   test('TTS toggle is available', async ({ page }) => {
-    await page.click('text=⚙️')
+    await page.click('[aria-label="Settings"]')
 
     // TTS checkbox should exist (may or may not be available depending on browser)
     const ttsLabel = page.locator('text=Text-to-Speech')
@@ -31,7 +31,7 @@ test.describe('Settings', () => {
   })
 
   test('frequency selector shows spelling units', async ({ page }) => {
-    await page.click('text=⚙️')
+    await page.click('[aria-label="Settings"]')
 
     // Should have select elements for frequency control
     const selects = page.locator('select')
@@ -44,7 +44,7 @@ test.describe('Settings', () => {
   })
 
   test('setting a unit to off persists', async ({ page }) => {
-    await page.click('text=⚙️')
+    await page.click('[aria-label="Settings"]')
 
     // Change first unit to "off"
     const firstSelect = page.locator('select').first()
@@ -52,7 +52,7 @@ test.describe('Settings', () => {
 
     // Close and reopen settings
     await page.click('text=Close')
-    await page.click('text=⚙️')
+    await page.click('[aria-label="Settings"]')
 
     // Should still be "off"
     const reopenedSelect = page.locator('select').first()
@@ -61,7 +61,7 @@ test.describe('Settings', () => {
 
   test('sight words module has settings', async ({ page }) => {
     await page.goto('/#/sight-words')
-    await page.click('text=⚙️')
+    await page.click('[aria-label="Settings"]')
 
     await expect(page.locator('text=Settings')).toBeVisible()
     await expect(page.locator('text=Sight Words')).toBeVisible()
