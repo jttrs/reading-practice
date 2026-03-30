@@ -4,5 +4,6 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.12"
 dependencies = [
+    "google-cloud-texttospeech>=2.35.0",
     "pymupdf>=1.27.2.2",
 ]

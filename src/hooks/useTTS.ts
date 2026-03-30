@@ -1,5 +1,16 @@
 import { useCallback, useRef, useState, useEffect } from 'react'
 
+/**
+ * Resolve a TTS value to an audio file URL.
+ *
+ * - If `type` is 'word', looks in /audio/words/
+ * - If `type` is 'phoneme', looks in /audio/phonemes/
+ */
+function audioUrl(value: string, type: 'phoneme' | 'word'): string {
+  const dir = type === 'word' ? 'words' : 'phonemes'
+  return `${import.meta.env.BASE_URL}audio/${dir}/${encodeURIComponent(value)}.mp3`
+}
+
 export function useTTS(moduleId: string) {
   const settingsKey = `settings:${moduleId}:tts`
   const [enabled, setEnabled] = useState(() => {
@@ -10,53 +21,70 @@ export function useTTS(moduleId: string) {
       return true
     }
   })
-  const [available, setAvailable] = useState(false)
-  const synthRef = useRef<SpeechSynthesis | null>(null)
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.speechSynthesis) {
-      synthRef.current = window.speechSynthesis
-      setAvailable(true)
-    }
-  }, [])
+  // Audio is always available (pre-generated files)
+  const available = true
+  const currentAudioRef = useRef<HTMLAudioElement | null>(null)
+  const abortRef = useRef(false)
 
   useEffect(() => {
     localStorage.setItem(settingsKey, String(enabled))
   }, [enabled, settingsKey])
 
-  const speak = useCallback((text: string, rate = 0.8) => {
-    if (!enabled || !synthRef.current) return
-    synthRef.current.cancel()
-    const utterance = new SpeechSynthesisUtterance(text)
-    utterance.rate = rate
-    utterance.pitch = 1.0
-    synthRef.current.speak(utterance)
-  }, [enabled])
+  const stop = useCallback(() => {
+    abortRef.current = true
+    if (currentAudioRef.current) {
+      currentAudioRef.current.pause()
+      currentAudioRef.current = null
+    }
+  }, [])
 
-  const speakSequence = useCallback(async (parts: string[], pauseMs = 600) => {
-    if (!enabled || !synthRef.current) return
-    synthRef.current.cancel()
+  const playAudio = useCallback((url: string): Promise<void> => {
+    return new Promise((resolve) => {
+      const audio = new Audio(url)
+      currentAudioRef.current = audio
+      audio.onended = () => {
+        currentAudioRef.current = null
+        resolve()
+      }
+      audio.onerror = () => {
+        currentAudioRef.current = null
+        resolve()
+      }
+      audio.play().catch(() => resolve())
+    })
+  }, [])
+
+  /** Speak a whole word using pre-generated audio. */
+  const speak = useCallback((word: string) => {
+    if (!enabled) return
+    stop()
+    abortRef.current = false
+    playAudio(audioUrl(word, 'word'))
+  }, [enabled, stop, playAudio])
+
+  /**
+   * Speak a sequence of sounds then the whole word.
+   * The last element of `parts` is treated as a whole word;
+   * all preceding elements are phoneme sounds.
+   */
+  const speakSequence = useCallback(async (parts: string[], pauseMs = 500) => {
+    if (!enabled || parts.length === 0) return
+    stop()
+    abortRef.current = false
 
     for (let i = 0; i < parts.length; i++) {
-      const utterance = new SpeechSynthesisUtterance(parts[i])
-      utterance.rate = 0.7
-      utterance.pitch = 1.0
+      if (abortRef.current) return
 
-      await new Promise<void>((resolve) => {
-        utterance.onend = () => resolve()
-        utterance.onerror = () => resolve()
-        synthRef.current!.speak(utterance)
-      })
+      // Last element is the whole word, rest are phoneme sounds
+      const isWord = i === parts.length - 1
+      const url = audioUrl(parts[i], isWord ? 'word' : 'phoneme')
+      await playAudio(url)
 
-      if (i < parts.length - 1) {
+      if (i < parts.length - 1 && !abortRef.current) {
         await new Promise(r => setTimeout(r, pauseMs))
       }
     }
-  }, [enabled])
-
-  const stop = useCallback(() => {
-    synthRef.current?.cancel()
-  }, [])
+  }, [enabled, stop, playAudio])
 
   const toggle = useCallback(() => {
     setEnabled(prev => !prev)

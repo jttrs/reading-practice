@@ -267,6 +267,47 @@ def validate_suffix_pronunciation(data: dict) -> list[ValidationError]:
     return errors
 
 
+AUDIO_PHONEME_DIR = Path("public/audio/phonemes")
+AUDIO_WORD_DIR = Path("public/audio/words")
+
+
+def validate_audio_files(data: dict) -> list[ValidationError]:
+    """Every ttsBreakdown and ttsWord value must have a corresponding audio file."""
+    errors = []
+
+    # Check phoneme audio files
+    phoneme_values: set[str] = set()
+    for w in data["decodingWords"]:
+        for t in w["ttsBreakdown"]:
+            phoneme_values.add(t)
+
+    for val in sorted(phoneme_values):
+        filename = val.replace("/", "_")
+        path = AUDIO_PHONEME_DIR / f"{filename}.mp3"
+        if not path.exists():
+            errors.append(ValidationError(
+                "audio_files",
+                f"Missing phoneme audio: {path} (for ttsBreakdown value '{val}')"
+            ))
+
+    # Check word audio files
+    word_values: set[str] = set()
+    for w in data["decodingWords"]:
+        word_values.add(w["ttsWord"])
+    for w in data["sightWords"]:
+        word_values.add(w["ttsWord"])
+
+    for word in sorted(word_values):
+        path = AUDIO_WORD_DIR / f"{word}.mp3"
+        if not path.exists():
+            errors.append(ValidationError(
+                "audio_files",
+                f"Missing word audio: {path} (for ttsWord '{word}')"
+            ))
+
+    return errors
+
+
 def main():
     data = load_data()
 
@@ -281,6 +322,7 @@ def main():
         ("No excluded words", validate_no_excluded_words),
         ("Sight word TTS", validate_sight_word_tts),
         ("Suffix pronunciation", validate_suffix_pronunciation),
+        ("Audio files", validate_audio_files),
     ]
 
     total_errors = 0

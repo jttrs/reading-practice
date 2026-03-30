@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "extract": "uv run python scripts/extract_decoding_data.py",
+    "generate-audio": "uv run python scripts/generate_audio.py",
     "validate": "uv run python scripts/validate_data.py",
     "test:e2e": "npx playwright test",
     "test": "npm run validate && npm run build && npm run test:e2e"
