@@ -30,9 +30,8 @@ test.describe('Decoding module', () => {
     const count = await letterElements.count()
     expect(count).toBeGreaterThanOrEqual(2)
 
-    // Full word should appear below the breakdown
-    const fullWord = page.locator('p.text-3xl')
-    await expect(fullWord).toBeVisible()
+    // Phoneme context info should appear below the breakdown
+    await expect(page.locator('text=/from "/')).toBeVisible()
   })
 
   test('breakdown has color-coded underlines', async ({ page }) => {

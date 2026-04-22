@@ -14,38 +14,42 @@ function isPatternElement(element: string, spellingUnit: SpellingUnit | undefine
   return false
 }
 
+interface DisplayGroup {
+  text: string
+  isPattern: boolean
+}
+
 /**
- * Expand a breakdown into individual letters with pattern flags.
- * For split digraphs (a_e), marks the vowel and trailing 'e' as pattern letters.
- * For regular patterns (ai, ee), marks those letters as pattern letters.
- * Individual consonants get their own letter slots.
+ * Build display groups from a breakdown, keeping multi-letter patterns
+ * (like "ow", "ai", "ee") as single visual units.
+ *
+ * Split digraphs (a_e, o_e, etc.) are an exception: the two halves display
+ * separately since other letters sit between them in the word.
  */
-function expandToLetters(
+function buildDisplayGroups(
   breakdown: string[],
   spellingUnit: SpellingUnit | undefined,
-): { letter: string; isPattern: boolean }[] {
-  const chars: { letter: string; isPattern: boolean }[] = []
+): DisplayGroup[] {
+  const groups: DisplayGroup[] = []
   let pendingSplitEnd: string | null = null
 
   for (const element of breakdown) {
     const isPat = isPatternElement(element, spellingUnit)
 
     if (element.includes('_')) {
-      // Split digraph: "a_e" → mark 'a' now, queue 'e' for end
       const [first, last] = element.split('_')
-      for (const c of first) chars.push({ letter: c, isPattern: true })
+      groups.push({ text: first, isPattern: true })
       pendingSplitEnd = last
     } else {
-      for (const c of element) chars.push({ letter: c, isPattern: isPat })
+      groups.push({ text: element, isPattern: isPat })
     }
   }
 
-  // Append the split digraph's trailing letter(s)
   if (pendingSplitEnd) {
-    for (const c of pendingSplitEnd) chars.push({ letter: c, isPattern: true })
+    groups.push({ text: pendingSplitEnd, isPattern: true })
   }
 
-  return chars
+  return groups
 }
 
 export default function DecodingCard({ word, spellingUnit, isRevealed }: DecodingCardProps) {
@@ -82,20 +86,19 @@ export default function DecodingCard({ word, spellingUnit, isRevealed }: Decodin
     </div>
   )
 
-  const chars = expandToLetters(word.decodingBreakdown, spellingUnit)
+  const groups = buildDisplayGroups(word.decodingBreakdown, spellingUnit)
 
   return (
     <div className="flex flex-col items-center">
-      {/* Letter-by-letter display with color-coded underlines */}
       <div className="flex items-end">
-        {chars.map((ch, i) => (
+        {groups.map((g, i) => (
           <div key={i} className="flex flex-col items-center px-1 sm:px-2">
             <span className="text-5xl font-bold text-stone-800 sm:text-6xl">
-              {ch.letter}
+              {g.text}
             </span>
             <div
               className={`mt-1 h-1 w-full rounded ${
-                ch.isPattern ? 'bg-teal-400' : 'bg-stone-300'
+                g.isPattern ? 'bg-teal-400' : 'bg-stone-300'
               }`}
             />
           </div>
